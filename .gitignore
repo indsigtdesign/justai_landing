@@ -6,3 +6,4 @@ dist
 .cache
 notes.org
 _site
+.env

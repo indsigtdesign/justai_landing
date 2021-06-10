@@ -36,7 +36,6 @@ module.exports = function (config) {
       layouts: `./_layouts/`,
     },
     passthroughFileCopy: true,
-    templateFormats: ['html', 'md', 'njk'],
     htmlTemplateEngine: 'njk',
     dataTemplateEngine: 'njk',
     markdownTemplateEngine: 'njk',

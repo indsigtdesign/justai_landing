@@ -1,9 +1,9 @@
 module.exports = {
   mount: {
     _site: { url: '/', static: true },
+    '_site/data': { url: '/data', static: true },
     'src/js': { url: '/js' },
     'src/css': { url: '/css' },
-    'src/_data': { url: '/data' },
     'src/img': { url: '/img' },
   },
   plugins: [
@@ -20,7 +20,7 @@ module.exports = {
     NODE_ENV: true,
   },
   buildOptions: {
-    clean: true,
+    clean: false,
     out: '_site',
   },
   devOptions: {
