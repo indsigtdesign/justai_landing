@@ -15,7 +15,7 @@ d3.json('./data/data.json').then(function (data) {
     .attr('width', width)
     .attr('height', height)
     .append('g')
-    .attr('transform', 'translate(' + width / 2 + ',' + radius + ')')
+    .attr('transform', 'translate(' + width / 2 + ',' + radius/1.2 + ')')
 
   var stratify = d3.cluster().size([2 * Math.PI, radius - 100])
 
@@ -180,10 +180,10 @@ d3.json('./data/data.json').then(function (data) {
     .lower()
   // .attr("stroke", "white");
 
-  d3.select('#dendro-labels-on').on('click', function () {
+  d3.selectAll('.dendro-labels-on').on('click', function () {
     d3.selectAll('.dendroText').transition().attr('fill', 'white')
   })
-  d3.select('#dendro-labels-off').on('click', function () {
+  d3.selectAll('.dendro-labels-off').on('click', function () {
     d3.selectAll('.dendroText').transition().attr('fill', 'none')
   })
 })

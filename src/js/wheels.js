@@ -512,7 +512,7 @@ d3.json('./data/data.json').then(function (data) {
     })
     .attr('height', 0)
     .attr('stroke-width', function (d) {
-      if (d.value == 1) {
+      if (d.value > 0) {
         return strokeHighlight
       } else {
         return strokeNormal
@@ -522,13 +522,6 @@ d3.json('./data/data.json').then(function (data) {
 
   //THIS SHOULD BE TOTAL NUM RESPONDENTS SO FAR
   maxTotal = sdata[2].responses
-  // if(maxId>0 && maxTheme>0){
-  // 	if(maxId>maxTheme){
-  // 		maxTotal = maxId;
-  // 	}else{
-  // 		maxTotal = maxTheme;
-  // 	}
-  // }
 
   if (maxTotal > 0) {
     barScale.domain([0, maxTotal])
@@ -598,14 +591,6 @@ d3.json('./data/data.json').then(function (data) {
     .style('stroke-width', 0.5)
   d3.selectAll('.innerCirc, .innerCircTheme').attr('stroke-width', 0.3)
 
-  // var background = svg.append("rect")
-  // 	.attr("class","keyRect")
-  // 	.attr("x",0)
-  // 	.attr("y",0)
-  // 	.attr("width",width)
-  // 	.attr("height",height)
-  // 	.attr("fill","black")
-  // 	.attr("opacity",0)
   var idText = gid
     .append('text')
     .attr('class', 'idText')
@@ -619,7 +604,7 @@ d3.json('./data/data.json').then(function (data) {
     .attr('fill', 'none')
     .text(function (d, i) {
       return 1 + i
-    }) // => d.name);
+    }) 
   var themeText = gthe
     .append('text')
     .attr('class', 'themeText')
@@ -643,11 +628,53 @@ d3.json('./data/data.json').then(function (data) {
     .attr('height', 0)
     .attr('xlink:href', 'img/wheels_key.svg')
 
+
+  d3.select('#self-highlight-off').on('click', function () {
+    d3.selectAll('.rectID, .rectTHE')
+      .transition()
+      .attr('fill', 'none')
+      .transition()
+      .attr('stroke-width', strokeHighlight)
+  })
+  d3.select('#self-highlight-on').on('click', function () {
+    d3.selectAll('.rectID').transition().attr('fill',function (d) {
+      if (d.value == 1) {
+        return colID(d.parent)
+      } else {
+        return 'none'
+      }
+    })
+    .transition()
+    .attr('stroke-width', function (d) {
+      if (d.value == 1) {
+        return strokeHighlight
+      } else {
+        return strokeNormal
+      }
+    })
+
+    d3.selectAll('.rectTHE').transition().attr('fill', function (d) {
+      if (d.value > 0) {
+        return colTHEME(d.value)
+      } else {
+        return 'none'
+      }
+    })
+    .transition()
+    .attr('stroke-width', function (d) {
+      if (d.value > 0) {
+        return strokeHighlight
+      } else {
+        return strokeNormal
+      }
+    })
+
+  })
+
   d3.select('#wheels-labels-on').on('click', function () {
     d3.selectAll('.lineID, .yearID, .lineTH, .lineCN').attr('opacity', 0.1)
     d3.selectAll('.innerCirc, .innerCircTheme').attr('opacity', 0.1)
     d3.selectAll('.rectID, .rectTHE').attr('opacity', '.3')
-
     d3.selectAll('.idText, .themeText').attr('fill', 'white')
     d3.selectAll('.keyImg').transition().attr('height', 300)
   })
@@ -655,7 +682,6 @@ d3.json('./data/data.json').then(function (data) {
     d3.selectAll('.rectID, .rectTHE').attr('opacity', '1')
     d3.selectAll('.lineID, .yearID, .lineTH, .lineCN').attr('opacity', '.3')
     d3.selectAll('.innerCirc, .innerCircTheme').attr('opacity', 0.5)
-
     d3.selectAll('.idText, .themeText').attr('fill', 'none')
     d3.selectAll('.keyImg').transition().attr('height', 0)
   })

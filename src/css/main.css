@@ -108,14 +108,14 @@ textarea {
     font-family: 'IBM Plex Mono', monospace;
    }
 
-   tspan{
-    color: white;
-    font-family: 'IBM Plex Mono', monospace;
+   button{
+    height: 40px;
     font-size: 10px;
-    line-height: 1;
-    font-style: normal;
-    font-weight: normal;
+    background-color: black;
+    color: white;
+    display: inline-block;
    }
+
    #key{
     display: none;
    }
