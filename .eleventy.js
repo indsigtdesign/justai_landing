@@ -11,6 +11,7 @@ module.exports = function (config) {
   config.addPassthroughCopy('./src/manifest.json')
   config.addPassthroughCopy('./src/robots.txt')
   config.addPassthroughCopy('./src/site.webmanifest')
+  config.addPassthroughCopy('./src/browserconfig.xml')
 
   // 404
   config.setBrowserSyncConfig({
