@@ -21,7 +21,7 @@ module.exports = {
   },
   buildOptions: {
     clean: false,
-    out: '_site',
+    out: 'dist',
   },
   devOptions: {
     open: 'none',
