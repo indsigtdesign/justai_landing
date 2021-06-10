@@ -6,7 +6,7 @@
   "license": "",
   "author": "",
   "scripts": {
-    "clean": "rimraf src/_site",
+    "clean": "rimraf _site",
     "serve": "serve --no-clipboard --listen 8080 _site",
     "dev": "cross-env NODE_ENV=development run-s clean dev:*",
     "dev:eleventy": "eleventy",
