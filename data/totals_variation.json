@@ -39,21 +39,21 @@
 						}
 					]
 				},
-				{"name":"funding",
+				{"name":"paid work",
 					"children": [
 						{
-							"q":"are you funded?",
+							"q":"are you paid for your work on AI/data ethics?",
 							"name": "yes",
 							"value": 1,
 							"total":18,
-							"parent":"funding"
+							"parent":"paid work"
 						},
 						{
-							"q":"are you funded?",
+							"q":"are you paid for your work on AI/data ethics?",
 							"name": "no",
 							"value": 0,
 							"total":10,
-							"parent":"funding"
+							"parent":"paid work"
 						}
 					]
 				},

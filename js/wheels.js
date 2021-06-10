@@ -1,3 +1,4 @@
+d3.json("../data/totals_variation.json").then(function(data) {
 var div = document.getElementById("wheel-container");
 var rect = div.getBoundingClientRect();
   width = rect.width;
@@ -20,7 +21,7 @@ var paddingX = width/15;
 var paddingY = height/14; 
 // var outerCircleRadius = height/10;
 
-var centerEX = width/2-paddingX*2; //width/3.3;
+var centerEX = width/2-paddingX*2.5; //width/3.3;
 var centerEH = height/figDepth;
 
 var innerCircRad = width/40;
@@ -33,7 +34,7 @@ var maxBar = minRad*4;
 
 
 var idColors = ["#4EA8BA","#4EA8BA","#46AAB3","#7B9FE3","#9A99FF","#65A4CF"] 
-var idNames = ["self-ethicist","others-ethicist","funding","years in field","education","career path"]
+var idNames = ["self-ethicist","others-ethicist","paid work","years in field","education","career path"]
 var themeColors = ["#CB9AC6","#FDCC9A","#B668AA","#D66B6E","#DC9AA2","#8B6BAA","#EB9C84","#CB9AC6"]
 var themeNums = [0,1,2,3,12,23, 13, 123]
 var strokeHighlight = .5;
@@ -63,7 +64,7 @@ var posID = [
 		"x":centerEX+paddingX+smallMarg*2,
 		"y":centerEH-smallMarg,
 		"rot":80,
-		"id":"funding"
+		"id":"paid work"
 	},
 	{
 		"x":centerEX-paddingX/2,
@@ -176,9 +177,6 @@ function measureText(string, fontSize = ft) {
     .map(c => c.charCodeAt(0) < widths.length ? widths[c.charCodeAt(0)] : avg)
     .reduce((cur, acc) => acc + cur) * fontSize
 }
-
-d3.json("../data/totals_variation.json").then(function(data) {
-
 	console.log(data);
 	sdata = data.children;
 
@@ -194,17 +192,6 @@ d3.json("../data/totals_variation.json").then(function(data) {
 				return `translate(${posID[i].x}, ${posID[i].y}), rotate(${posID[i].rot},0,0)` 
 			}
 		});
-	var idText = gid.append('text')
-		.attr("class", "idText")
-		.attr('font-size', ft)
-		.attr("x",0)
-		.attr("y",2)
-		.attr("text-anchor","middle")
-		.attr('transform', function(d,i){ 
-			return `rotate(${-posID[i].rot},0,0)` 
-		})
-		.attr("fill","white")
-		.text(function(d,i){ return 1+i; })// => d.name);
 
 	var innerCirc = gid
 		.append("circle")
@@ -231,17 +218,6 @@ d3.json("../data/totals_variation.json").then(function(data) {
 		.attr('transform', function(d,i){ 
 			return `translate(${posTh[i].x}, ${posTh[i].y}), rotate(${posTh[i].rot},0,0)` 
 		});
-	var themeText = gthe.append('text')
-		.attr("class", "themeText")
-		.attr('font-size', ft)
-		.attr('x', 0)
-		.attr('y', 2)
-		.attr("text-anchor","middle")
-		.attr('transform', function(d,i){ 
-			return `rotate(${-posTh[i].rot},0,0)` 
-		})
-		.attr("fill","white")
-		.text(function(d,i){ return 7+i });
 	var innerCircTheme = gthe
 		.append("circle")
 		.attr("class", "innerCircTheme")
@@ -253,7 +229,6 @@ d3.json("../data/totals_variation.json").then(function(data) {
 		})
 		.attr("fill","none")
 		.attr("stroke","lightgrey");
-
 
 
   	var rectMaxID = gid.selectAll('.rectMaxID')
@@ -302,7 +277,7 @@ d3.json("../data/totals_variation.json").then(function(data) {
 			if(d.parent=="career path"){ 
 				return "rotate("+(180+(barwide*barSpaceCa)*i)+", 0, 0)";
 			}
-			if(d.parent=="self-ethicist"||d.parent=="others-ethicist"||d.parent=="funding"){ 
+			if(d.parent=="self-ethicist"||d.parent=="others-ethicist"||d.parent=="paid work"){ 
 				return "rotate("+(180+(barwide*barSpaceSm)*i)+", 0, 0)";
 			}
 			else{
@@ -387,7 +362,7 @@ d3.json("../data/totals_variation.json").then(function(data) {
 			if(d.parent=="career path"){ 
 				return "rotate("+(180+(barwide*barSpaceCa)*i)+", 0, 0)";
 			}
-			if(d.parent=="self-ethicist"||d.parent=="others-ethicist"||d.parent=="funding"){ 
+			if(d.parent=="self-ethicist"||d.parent=="others-ethicist"||d.parent=="paid work"){ 
 				return "rotate("+(180+(barwide*barSpaceSm)*i)+", 0, 0)";
 			}
 			else{
@@ -538,8 +513,7 @@ var zoom = d3.zoom()
   .on("zoom", zoomed);
 
 svg
-	// .call(zoom)
-	.call(zoom.scaleBy, 1.7)
+	.call(zoom.scaleBy, 2)
 
 
 // svg.on("click", reset);
@@ -581,314 +555,65 @@ g.append("path")
   .data([cnctLine])
   .attr("class", "lineCN")
   .attr("d", valueline)
-d3.selectAll("path").attr("fill","none").attr("stroke","lightgrey")
+d3.selectAll(".lineID, .yearID, .lineTH, .lineCN").attr("fill","none").attr("stroke","lightgrey")
   .style("stroke-dasharray", ("1,4"))
   .style("stroke-width", .5)
-d3.selectAll("circle").attr("stroke-width",.3)
-// d3.selectAll("text").attr("fill","none")
+d3.selectAll(".innerCirc, .innerCircTheme").attr("stroke-width",.3)
 
+// var background = svg.append("rect")
+// 	.attr("class","keyRect")
+// 	.attr("x",0)
+// 	.attr("y",0)
+// 	.attr("width",width)
+// 	.attr("height",height)
+// 	.attr("fill","black")
+// 	.attr("opacity",0)
+	var idText = gid.append('text')
+		.attr("class", "idText")
+		.attr('font-size', ft)
+		.attr("x",0)
+		.attr("y",2)
+		.attr("text-anchor","middle")
+		.attr('transform', function(d,i){ 
+			return `rotate(${-posID[i].rot},0,0)` 
+		})
+		.attr("fill","none")
+		.text(function(d,i){ return 1+i; })// => d.name);
+	var themeText = gthe.append('text')
+		.attr("class", "themeText")
+		.attr('font-size', ft)
+		.attr('x', 0)
+		.attr('y', 2)
+		.attr("text-anchor","middle")
+		.attr('transform', function(d,i){ 
+			return `rotate(${-posTh[i].rot},0,0)` 
+		})
+		.attr("fill","none")
+		.text(function(d,i){ return 7+i });
+var key = svg.append("image")
+	.attr("class","keyImg")
+	.attr("x",0)
+	.attr("y",height-300)
+	.attr("width",width)
+	.attr("height",0)
+	.attr("xlink:href","img/wheels_key.svg");
 
-var xmargin = 80//rect.width/10;//80;
-var ymargin = 20;
-var gridH = 400;
-var widthBox = xmargin*1.8; 
-var heightBox = 50;
-// var margin = 
-function gridData() {
-	var data = new Array();
-	var xpos = heightBox/2; //starting xpos and ypos at 1 so the stroke will show when we make the grid below
+d3.select("#labels-on").on("click", function(){
+	d3.selectAll(".lineID, .yearID, .lineTH, .lineCN").attr("opacity",.1)
+	d3.selectAll(".innerCirc, .innerCircTheme").attr("opacity",.1)
+	d3.selectAll(".rectID, .rectTHE").attr("opacity",".3")
 
-	var ypos = heightBox/2;
-	var index = 0;
-	// iterate for rows	
-	for (var row = 0; row < 4; row++) {
-		data.push( new Array() );
-		
-		// iterate for cells/columns inside rows
-		for (var column = 0; column < 4; column++) {
-				data[row].push({
-					x: xpos,
-					y: ypos,
-					width: widthBox,
-					height: heightBox,
-					text: index
-				})		
-			// increment the x position. I.e. move it over by 50 (width variable)
-			xpos += xmargin*2;
-			index++;
-		}
-		// reset the x position after a row is complete
-		xpos = 1;
-		index++;
-		// increment the y position for the next row. Move it down 50 (height variable)
-		ypos += ymargin*2.5;	
-	}
-	return data;
-}
+	d3.selectAll(".idText, .themeText").attr("fill","white")
+	d3.selectAll(".keyImg").transition().attr("height",300)
+})
+d3.select("#labels-off").on("click", function(){
+	d3.selectAll(".rectID, .rectTHE").attr("opacity","1")
+	d3.selectAll(".lineID, .yearID, .lineTH, .lineCN").attr("opacity",".3")
+	d3.selectAll(".innerCirc, .innerCircTheme").attr("opacity",.5)
 
-var gridData = gridData();	
-console.log(gridData);
-
-var gridLMarg = 40;
-var grid = d3.select("#wheel-legend-container")
-	.append("svg")
-	.attr("width",rect.width)
-	.attr("height",gridH)
-var arrow1 = grid.append('image')
-    .attr('xlink:href', '../img/arrow2.svg')
-    .attr('width', 40)
-    .attr('height',40)
-    .attr("x",heightBox/2-1)
-    .attr("y",ymargin*9.5)
-var arrow2 = grid.append('image')
-    .attr('xlink:href', '../img/arrow2.svg')
-    .attr('width', 40)
-    .attr('height',40)
-    .attr("x",rect.width/2)
-    .attr("y",ymargin*9.5)
-var descriptorID = "Identity COLOR = denotes separate question types";
-var descriptorTH = "Theme COLOR = answers about your 1st work theme will show up in the light yellow of theme 1, etc.";
-var text1 = grid
-	.append("foreignObject")
-    .attr("width", 140)
-    .attr("height",80)
-    .attr("y",ymargin*11)
-    .attr("x",heightBox)
-  .append("xhtml:body")
-    .html("<tspan>"+descriptorID+"")
-var text2 = grid
-	.append("foreignObject")
-    .attr("width", 110)
-    .attr("height",120)
-    .attr("x",rect.width-130)
-    .attr("y",ymargin*10.5)
-  .append("xhtml:body")
-    .html("<tspan>"+descriptorTH+"")
-
-
-
-var row = grid.selectAll(".row")
-	.data(gridData).join("g").attr("class","row")
-	.attr('transform',`translate(${0}, ${0})`)
-var column = row.selectAll(".group")
-	.data(function(d) { return d; })
-	.enter().append("g")
-	.attr("class",function(d){
-		return d.text})
-	.attr('transform',function(d,i){
-    	if(d.text==0 ||d.text==2){
-				return `translate(${d.x}, ${d.y})` 
-    	}else{
-				return `translate(${d.x+22}, ${d.y-10})` 
-    	}
-	})
-var wordArray = [
-"IDENTITY","","WORK THEMES","","",
-"what best describes where you are in your career?",
-"are you paid for your work on AI/data ethics?",
-"how would you define the broad topic?",
-"who else is involved in your work on this theme?","",
-"do your colleagues see you as an ethicist?",
-"which fields are closest to your education or training?",
-"is there a particular domain you look at?",
-"what outputs is this work producing?","",
-"do you see yourself as an ethicist?",
-"how many years have you been in the field of AI ethics?",
-"do you collaborate with others in this work?",
-"who is the audience of your work?",""]
-
-var numArray=[
-"","","","","",
-"1.","4.","7.","10.","",
-"2.","5.","8.","11.","",
-"3.","6.","9.","12.",""
-]
-
-var text = column //.selectAll(".legend")
-	.append("foreignObject")
-    .attr("width", function(d){
-    	if(d.text==0 ||d.text==2){
-    		return d.width*2; //xmargin*2;
-    	}else{
-    		return d.width; //xmargin*1.5;
-    	}
-    })
-    .attr("height", function(d){
-    		return d.height;
-    })
-    .attr("y",-20)
-    .attr("x",function(d){
-    	if(d.text==0 ||d.text==2){
-    		return 0;
-    	}
-    	if(parseInt(d.text)==8 || parseInt(d.text)==13|| parseInt(d.text)==18){
-    		return 25;
-    	}else{
-    		return 20;
-    	}
-    })
-  .append("xhtml:body")
-    .html(function(d){
-    	if(d.text==0||d.text==2){
-    		return "<tspan>"+wordArray[d.text]+""
-    	} 
-    	return "<tspan>"+wordArray[d.text]+""
-    });
-var text = column //.selectAll(".legend")
-	.append("text")
-  	.attr("x",0)
-  	.attr("y",0)
-  	.attr("dx",10)
-    .text(function(d){
-    	return numArray[d.text];
-    });
-
-
-var legColors=[
-"","","","","",
-"#4EA8BA","#7B9FE3","#CB9AC6","#CB9AC6","",
-"#4EA8BA","#9A99FF","#CB9AC6","#CB9AC6","",
-"#46AAB3","#65A4CF","#CB9AC6","#CB9AC6",""
-]
-
-var bars = column 
-	.append("rect")
-  	.attr("x",10)
-  	.attr("y",5)
-  	.attr("width",barwide*4)
-  	.attr("height",barwide*2)
-    .attr("fill",function(d){
-    	if(d.text<=4 || parseInt(d.text)==8 || parseInt(d.text)==13|| parseInt(d.text)==18 || parseInt(d.text)==7 || parseInt(d.text)==12 || parseInt(d.text)==17){
-  			return "none"
-  		}
-    	return legColors[d.text];
-    })
-    .attr("stroke", function(d){
-  		if(parseInt(d.text)==8 || parseInt(d.text)==13|| parseInt(d.text)==18 || parseInt(d.text)==7 || parseInt(d.text)==12 || parseInt(d.text)==17){
-	    	return legColors[d.text];
-			}else{
-				return "none";
-			}
-    })
-
-
-
-
-
-
-
-function tinyGrid() {
-	var xmargin = 20;
-	var ymargin = 20;
-	var widthBox = xmargin*4; 
-	var heightBox = xmargin*2;
-	var index = 0;
-	var data = new Array();
-	var xpos = 0; //starting xpos and ypos at 1 so the stroke will show when we make the grid below
-	var ypos = 0;
-	// iterate for rows	
-	for (var row = 0; row < 4; row++) {
-		data.push( new Array() );
-		
-		// iterate for cells/columns inside rows
-		for (var column = 0; column < 2; column++) {
-				data[row].push({
-					x: xpos,
-					y: ypos,
-					width: widthBox,
-					height: heightBox,
-					text: index
-				})		
-			// increment the x position. I.e. move it over by 50 (width variable)
-			xpos += widthBox;
-			index++;
-		}
-		// reset the x position after a row is complete
-		xpos = 1;
-		index++;
-		// increment the y position for the next row. Move it down 50 (height variable)
-		ypos += ymargin;	
-	}
-	return data;
-}
-
-var tinyGrid = tinyGrid();	
-console.log(tinyGrid);
-
-var trow = grid.selectAll(".trow")
-	.data(tinyGrid).join("g").attr("class","trow")
-	.attr('transform',`translate(${rect.width/2}, ${220})`)
-var tcolumn = trow.selectAll(".tgroup")
-	.data(function(d) { return d; })
-	.enter().append("g")
-	.attr("class",function(d){
-		return d.text
-	})
-	.attr('transform',function(d,i){
-		return `translate(${d.x+30}, ${d.y})`
-	})
-var twordArray = [
-"theme 1","theme 1+2","",
-"theme 2","theme 2+3","",
-"theme 3","theme 1+3","",
-"theme 1,2,3"
-,""]
-
-var thmText = tcolumn 
-	.append("foreignObject")
-    .attr("width", function(d){
-    	if(d.text==9){
-    		return d.width*2; 
-    	}else{
-    		return d.width;
-    	}
-    })
-    .attr("height", function(d){
-    		return d.height;
-    })
-    .attr("y",-10)
-  	.attr("x",function(d){
-  		if(d.text==9){
-  			return 50;
-  		}else{
-  			return 20;
-  		}
-  	})
-  .append("xhtml:body")
-    .html(function(d){
-    	return "<tspan>"+twordArray[d.text]+""
-    });
-
-var tlegColors=[
-"#FDCC9A","#DC9AA2","",
-"#B668AA","#8B6BAA","",
-"#D66B6E","#EB9C84","",
-"#CB9AC6","",""
-]
-
-var tbars = tcolumn 
-	.append("rect")
-  	.attr("x",function(d){
-  		if(d.text==9){
-  			return 40;
-  		}else{
-  			return 9;
-  		}
-  	})
-  	.attr("y",5)
-  	.attr("width",barwide*4)
-  	.attr("height",barwide*2)
-    .attr("fill",function(d){
-    	if(d.text==10){
-    		return "none";
-    	}else{
-    		return tlegColors[d.text];
-    	}
-    })
-
+	d3.selectAll(".idText, .themeText").attr("fill","none");
+	d3.selectAll(".keyImg").transition().attr("height",0)
 })
 
 
-  	// var idNames = ["self-ethicist","others-ethicist","funding","years in field","education","career path"]
-// var themeColors = ["#CB9AC6","#FDCC9A","#B668AA","#D66B6E","#DC9AA2","#8B6BAA","#EB9C84","#CB9AC6"]
-// var themeNums = [0,1,2,3,12,23, 13, 123]
+})

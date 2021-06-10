@@ -1,4 +1,7 @@
 
+// read json data
+d3.json("../data/totals_variation.json").then(function(data) {
+
 // set the dimensions and margins of the graph
 
 
@@ -8,26 +11,19 @@ var rect = div.getBoundingClientRect();
   y = rect.top;
   width = rect.width;
   height = rect.height;
-var radius = width / 2;
-// var keySVG = d3.select("#my_dataviz").append("svg").attr("width",200).attr("height",100)
-// .attr("transform","translate(" + (width+100) + ","+(20)+")");
+var radius = width / 1.5;
 
-// append the svg object to the body of the page
 var svg = d3.select("#fingerprint-container")
   .append("svg")
     .attr("width", width)
     .attr("height", height)
   .append("g")
-    .attr("transform", "translate(" + (radius) + "," + (radius) + ")");
-
-// var stratify = d3.tree()
-//   .size([Math.PI*2, radius])
-//   .separation((a, b) => (a.parent == b.parent ? 1 : 2) / a.depth)
+    .attr("transform", "translate(" + (width/2) + "," + (height/2) + ")");
 
 var stratify = d3.cluster().size([2 * Math.PI, radius - 100])
 
 var idColors = ["#4EA8BA","#4EA8BA","#46AAB3","#7B9FE3","#9A99FF","#65A4CF"] 
-var idNames = ["self-ethicist","others-ethicist","funding","years in field","education","career path"]
+var idNames = ["self-ethicist","others-ethicist","paid work","years in field","education","career path"]
 
 var themeColors = ["#CB9AC6","#FDCC9A","#B668AA","#D66B6E","#DC9AA2","#8B6BAA","#EB9C84","#CB9AC6"]
 var themeNums = [0,1,2,3,12,23, 13, 123]
@@ -41,9 +37,6 @@ var colTHEME = d3.scaleOrdinal()
   .range(themeColors);
 
 var sdata;
-// read json data
-d3.json("../data/totals_variation.json").then(function(data) {
-
   data.children.pop();
   sortData = d3.hierarchy(data)
 
