@@ -1,8 +1,7 @@
 // read json data
 d3.json('./data/data.json').then(function (data) {
-  // set the dimensions and margins of the graph
 
-  var div = document.getElementById('fingerprint-container')
+  var div = document.getElementById('fingerprint')
   var rect = div.getBoundingClientRect()
   x = rect.left
   y = rect.top
@@ -11,7 +10,7 @@ d3.json('./data/data.json').then(function (data) {
   var radius = width / 1.5
 
   var svg = d3
-    .select('#fingerprint-container')
+    .selectAll('.fingerprint-container')
     .append('svg')
     .attr('width', width)
     .attr('height', height)
@@ -154,8 +153,7 @@ d3.json('./data/data.json').then(function (data) {
     .data(root.descendants())
     .join('text')
     .filter(function (d) {
-      // return 0;
-      return d.children //d.data.value>0 ||
+      return d.children 
     })
     .attr('class','dendroText')
     .attr(
@@ -176,10 +174,6 @@ d3.json('./data/data.json').then(function (data) {
       if (d.children) {
         return 'none'
       }
-      // if(!d.children){
-      // return "lightgrey"
-      // }
-      // return "none";
     })
     .text((d) => d.data.name)
     .clone(true)
