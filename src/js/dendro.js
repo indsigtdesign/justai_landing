@@ -1,6 +1,6 @@
 
 // read json data
-d3.json("../data/totals_variation.json").then(function(data) {
+d3.json("./data/data.json").then(function(data) {
 
 // set the dimensions and margins of the graph
 
