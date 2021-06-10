@@ -123,14 +123,16 @@ textarea {
    #wheel-container{
     max-width: 1060px;
     max-height: 700px;
+    min-width:690px;
+    min-height:480px;
     height: 100vh;
     width: 100%;
     display: inline-block;
    }
 
    #fingerprint-container{
-    max-width: 500px;
-    max-height: 500px;
+    min-width: 500px;
+    min-height: 500px;
     height: 100vh;
     width: 100%;
     display: inline-block;

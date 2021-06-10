@@ -16,7 +16,7 @@ d3.json('./data/data.json').then(function (data) {
     .attr('width', width)
     .attr('height', height)
     .append('g')
-    .attr('transform', 'translate(' + width / 2 + ',' + height / 2 + ')')
+    .attr('transform', 'translate(' + width / 2 + ',' + radius + ')')
 
   var stratify = d3.cluster().size([2 * Math.PI, radius - 100])
 
@@ -157,6 +157,7 @@ d3.json('./data/data.json').then(function (data) {
       // return 0;
       return d.children //d.data.value>0 ||
     })
+    .attr('class','dendroText')
     .attr(
       'transform',
       (d) => `
@@ -173,7 +174,7 @@ d3.json('./data/data.json').then(function (data) {
     )
     .attr('fill', function (d) {
       if (d.children) {
-        return 'white'
+        return 'none'
       }
       // if(!d.children){
       // return "lightgrey"
@@ -184,4 +185,11 @@ d3.json('./data/data.json').then(function (data) {
     .clone(true)
     .lower()
   // .attr("stroke", "white");
+
+  d3.select('#dendro-labels-on').on('click', function () {
+    d3.selectAll('.dendroText').transition().attr('fill', 'white')
+  })
+  d3.select('#dendro-labels-off').on('click', function () {
+    d3.selectAll('.dendroText').transition().attr('fill', 'none')
+  })
 })

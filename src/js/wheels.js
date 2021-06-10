@@ -20,13 +20,12 @@ d3.json('./data/data.json').then(function (data) {
   var figDepth = 2
   var paddingX = width / 15
   var paddingY = height / 14
-  // var outerCircleRadius = height/10;
 
-  var centerEX = width / 2 - paddingX * 2.5 //width/3.3;
+  var centerEX = width / 2 - paddingX * 2
   var centerEH = height / figDepth
 
   var innerCircRad = width / 40
-  var smallMarg = innerCircRad / 2 //outerCircleRadius/4;
+  var smallMarg = innerCircRad / 2
   //CHANGES HERE: CAREFUL!
   var maxRad = 40 // (height/10);
   var minRad = 7.5
@@ -208,7 +207,6 @@ d3.json('./data/data.json').then(function (data) {
         .reduce((cur, acc) => acc + cur) * fontSize
     )
   }
-  console.log(data)
   sdata = data.children
 
   var gid = g
@@ -645,7 +643,7 @@ d3.json('./data/data.json').then(function (data) {
     .attr('height', 0)
     .attr('xlink:href', 'img/wheels_key.svg')
 
-  d3.select('#labels-on').on('click', function () {
+  d3.select('#wheels-labels-on').on('click', function () {
     d3.selectAll('.lineID, .yearID, .lineTH, .lineCN').attr('opacity', 0.1)
     d3.selectAll('.innerCirc, .innerCircTheme').attr('opacity', 0.1)
     d3.selectAll('.rectID, .rectTHE').attr('opacity', '.3')
@@ -653,7 +651,7 @@ d3.json('./data/data.json').then(function (data) {
     d3.selectAll('.idText, .themeText').attr('fill', 'white')
     d3.selectAll('.keyImg').transition().attr('height', 300)
   })
-  d3.select('#labels-off').on('click', function () {
+  d3.select('#wheels-labels-off').on('click', function () {
     d3.selectAll('.rectID, .rectTHE').attr('opacity', '1')
     d3.selectAll('.lineID, .yearID, .lineTH, .lineCN').attr('opacity', '.3')
     d3.selectAll('.innerCirc, .innerCircTheme').attr('opacity', 0.5)
