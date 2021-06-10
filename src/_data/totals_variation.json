@@ -1,0 +1,1031 @@
+{
+	"name": "",
+	"children": [
+		{"name": "identity",
+			"children": [
+				{"name":"self-ethicist",
+					"children":[
+						{
+							"q":"do you identify as an ethicist?",
+							"name":"yes",
+							"value":-1,
+							"total":10,
+							"parent":"self-ethicist"
+						},
+						{
+							"q":"do you identify as an ethicist?",
+							"name":"no",
+							"value":-1,
+							"total":14,
+							"parent":"self-ethicist"
+						}
+					]
+				},
+				{"name":"others-ethicist",
+					"children":[
+						{
+							"q":"do others identify you as an ethicist?",
+							"name":"yes",
+							"value":-1,
+							"total":8,
+							"parent":"others-ethicist"
+						},
+						{
+							"q":"do others identify you as an ethicist?",
+							"name":"no",
+							"value":-1,
+							"total":12,
+							"parent":"others-ethicist"
+						}
+					]
+				},
+				{"name":"paid work",
+					"children": [
+						{
+							"q":"are you paid for your work on AI/data ethics?",
+							"name": "yes",
+							"value": 1,
+							"total":18,
+							"parent":"paid work"
+						},
+						{
+							"q":"are you paid for your work on AI/data ethics?",
+							"name": "no",
+							"value": 0,
+							"total":10,
+							"parent":"paid work"
+						}
+					]
+				},
+				{"name": "years in field",
+					"children": [
+						{
+							"q":"years",
+							"name": 0,
+							"value": 0,
+							"total": 10,
+							"parent":"years in field"
+						},						
+						{
+							"q":"years",
+							"name": 1,
+							"value": 0,
+							"total": 10,
+							"parent":"years in field"
+						},
+						{
+							"q":"years",
+							"name": 2,
+							"value": 0,
+							"total": 14,
+							"parent":"years in field"
+						},
+						{
+							"q":"years",
+							"name": 3,
+							"value": 0,
+							"total": 8,
+							"parent":"years in field"
+						},
+						{
+							"q":"years",
+							"name": 4,
+							"value": 0,
+							"total": 3,
+							"parent":"years in field"
+						},
+						{
+							"q":"years",
+							"name": 5,
+							"value": 0,
+							"total": 1,
+							"parent":"years in field"
+						},
+						{
+							"q":"years",
+							"name": 6,
+							"value": 0,
+							"total": 8,
+							"parent":"years in field"
+						},
+						{
+							"q":"years",
+							"name": 7,
+							"value": 0,
+							"total": 3,
+							"parent":"years in field"
+						},
+						{
+							"q":"years",
+							"name": 8,
+							"value": 0,
+							"total": 15,
+							"parent":"years in field"
+						},
+						{
+							"q":"years",
+							"name": 9,
+							"value": 0,
+							"total": 5,
+							"parent":"years in field"
+						},
+						{
+							"q":"years",
+							"name": 10,
+							"value": 0,
+							"total": 17,
+							"parent":"years in field"
+						},
+						{
+							"q":"years",
+							"name": 11,
+							"value": 0,
+							"total": 10,
+							"parent":"years in field"
+						},
+						{
+							"q":"years",
+							"name": 12,
+							"value": 0,
+							"total": 10,
+							"parent":"years in field"
+						},						
+						{
+							"q":"years",
+							"name": 13,
+							"value": 0,
+							"total": 10,
+							"parent":"years in field"
+						},
+						{
+							"q":"years",
+							"name": 14,
+							"value": 0,
+							"total": 14,
+							"parent":"years in field"
+						},
+						{
+							"q":"years",
+							"name": 15,
+							"value": 0,
+							"total": 8,
+							"parent":"years in field"
+						},
+						{
+							"q":"years",
+							"name": 16,
+							"value": 0,
+							"total": 3,
+							"parent":"years in field"
+						},
+						{
+							"q":"years",
+							"name": 17,
+							"value": 0,
+							"total": 1,
+							"parent":"years in field"
+						},
+						{
+							"q":"years",
+							"name": 18,
+							"value": 0,
+							"total": 8,
+							"parent":"years in field"
+						},
+						{
+							"q":"years",
+							"name": 19,
+							"value": 0,
+							"total": 3,
+							"parent":"years in field"
+						},
+						{
+							"q":"years",
+							"name": 20,
+							"value": 0,
+							"total": 15,
+							"parent":"years in field"
+						},
+						{
+							"q":"years",
+							"name": 21,
+							"value": 0,
+							"total": 5,
+							"parent":"years in field"
+						},
+						{
+							"q":"years",
+							"name": 22,
+							"value": 0,
+							"total": 17,
+							"parent":"years in field"
+						},
+						{
+							"q":"years",
+							"name": 23,
+							"value": 0,
+							"total": 10,
+							"parent":"years in field"
+						},
+						{
+							"q":"years",
+							"name": 24,
+							"value": 0,
+							"total": 10,
+							"parent":"years in field"
+						},						
+						{
+							"q":"years",
+							"name": 25,
+							"value": 0,
+							"total": 10,
+							"parent":"years in field"
+						},
+						{
+							"q":"years",
+							"name": 26,
+							"value": 0,
+							"total": 14,
+							"parent":"years in field"
+						},
+						{
+							"q":"years",
+							"name": 27,
+							"value": 0,
+							"total": 8,
+							"parent":"years in field"
+						},
+						{
+							"q":"years",
+							"name": 28,
+							"value": 0,
+							"total": 3,
+							"parent":"years in field"
+						},
+						{
+							"q":"years",
+							"name": 29,
+							"value": 0,
+							"total": 1,
+							"parent":"years in field"
+						},
+						{
+							"q":"years",
+							"name": 30,
+							"value": 0,
+							"total": 8,
+							"parent":"years in field"
+						},
+						{
+							"q":"years",
+							"name": 31,
+							"value": 0,
+							"total": 3,
+							"parent":"years in field"
+						},
+						{
+							"q":"years",
+							"name": 32,
+							"value": 0,
+							"total": 15,
+							"parent":"years in field"
+						},
+						{
+							"q":"years",
+							"name": 33,
+							"value": 0,
+							"total": 5,
+							"parent":"years in field"
+						},
+						{
+							"q":"years",
+							"name": 34,
+							"value": 0,
+							"total": 17,
+							"parent":"years in field"
+						},
+						{
+							"q":"years",
+							"name": 35,
+							"value": 0,
+							"total": 10,
+							"parent":"years in field"
+						},
+						{
+							"q":"years",
+							"name": 36,
+							"value": 0,
+							"total": 10,
+							"parent":"years in field"
+						},						
+						{
+							"q":"years",
+							"name": 37,
+							"value": 0,
+							"total": 10,
+							"parent":"years in field"
+						},
+						{
+							"q":"years",
+							"name": 38,
+							"value": 0,
+							"total": 14,
+							"parent":"years in field"
+						},
+						{
+							"q":"years",
+							"name": 39,
+							"value": 0,
+							"total": 8,
+							"parent":"years in field"
+						},
+						{
+							"q":"years",
+							"name": 40,
+							"value": 0,
+							"total": 3,
+							"parent":"years in field"
+						},
+						{
+							"q":"years",
+							"name": 41,
+							"value": 0,
+							"total": 1,
+							"parent":"years in field"
+						},
+						{
+							"q":"years",
+							"name": 42,
+							"value": 0,
+							"total": 8,
+							"parent":"years in field"
+						},
+						{
+							"q":"years",
+							"name": 43,
+							"value": 0,
+							"total": 3,
+							"parent":"years in field"
+						},
+						{
+							"q":"years",
+							"name": 44,
+							"value": 1,
+							"total": 15,
+							"parent":"years in field"
+						},
+						{
+							"q":"years",
+							"name": 45,
+							"value": 0,
+							"total": 5,
+							"parent":"years in field"
+						},
+						{
+							"q":"years",
+							"name": 46,
+							"value": 0,
+							"total": 17,
+							"parent":"years in field"
+						},
+						{
+							"q":"years",
+							"name": 47,
+							"value": 0,
+							"total": 10,
+							"parent":"years in field"
+						},
+						{
+							"q":"years",
+							"name": 48,
+							"value": 0,
+							"total": 10,
+							"parent":"years in field"
+						},
+						{
+							"q":"years",
+							"name": 49,
+							"value": 0,
+							"total": 10,
+							"parent":"years in field"
+						},
+						{
+							"q":"years",
+							"name": 50,
+							"value": 0,
+							"total": 10,
+							"parent":"years in field"
+						},
+						{
+							"q":"years",
+							"name": "50+",
+							"value": 0,
+							"total": 10,
+							"parent":"years in field"
+						}
+					]
+				},
+				{"name": "education",
+					"children": [{
+							"name": "agriculture",
+							"value": 0,
+							"total":3,
+							"parent":"education"
+						},
+						{
+							"name": "architecture",
+							"value": 0,
+							"total":22,
+							"parent":"education"
+						},
+						{
+							"name": "biology",
+							"value": 0,
+							"total":28,
+							"parent":"education"
+						},
+						{
+							"name": "business",
+							"value": 0,
+							"total":10,
+							"parent":"education"
+						},
+						{
+							"name": "computer science",
+							"value": 0,
+							"total":12,
+							"parent":"education"
+						},
+						{
+							"name": "data science",
+							"value": 1,
+							"total":18,
+							"parent":"education"
+						},
+						{
+							"name": "design & art",
+							"value": 0,
+							"total":7,
+							"parent":"education"
+						},
+						{
+							"name": "economics",
+							"value": 0,
+							"total":20,
+							"parent":"education"
+						},
+						{
+							"name": "education",
+							"value": 0,
+							"total":19,
+							"parent":"education"
+						},
+						{
+							"name": "engineering & technology",
+							"value": 0,
+							"total":30,
+							"parent":"education"
+						},
+						{
+							"name": "health",
+							"value": 0,
+							"total":38,
+							"parent":"education"
+						},
+						{
+							"name": "history",
+							"value": 0,
+							"total":40,
+							"parent":"education"
+						},
+						{
+							"name": "information management",
+							"value": 0,
+							"total":20,
+							"parent":"education"
+						},
+						{
+							"name": "languages",
+							"value": 0,
+							"total":10,
+							"parent":"education"
+						},
+						{
+							"name": "law",
+							"value": 0,
+							"total":7,
+							"parent":"education"
+						},
+						{
+							"name": "mathematics",
+							"value": 0,
+							"total":9,
+							"parent":"education"
+						},
+						{
+							"name": "environment",
+							"value": 0,
+							"total":10,
+							"parent":"education"
+						},
+						{
+							"name": "politics",
+							"value": 0,
+							"total":8,
+							"parent":"education"
+						},
+						{
+							"name": "psychology",
+							"value": 1,
+							"total":21,
+							"parent":"education"
+						},
+						{
+							"name": "philosophy",
+							"value": 0,
+							"total":28,
+							"parent":"education"
+						},
+						{
+							"name": "social science",
+							"value": 0,
+							"total":70,
+							"parent":"education"
+						},
+						{
+							"name": "sports",
+							"value": 0,
+							"total":1,
+							"parent":"education"
+						},
+						{
+							"name": "other",
+							"value": 0,
+							"total":18,
+							"parent":"education"
+						}
+					]
+				},
+				{"name": "career path",
+					"children": [{
+							"name": "undergraduate",
+							"value": 0,
+							"total":10,
+							"parent":"career path"
+						},
+						{
+							"name": "masters",
+							"value": 0,
+							"total":10,
+							"parent":"career path"
+						},
+						{
+							"name": "phd",
+							"value": 0,
+							"total":10,
+							"parent":"career path"
+						},
+						{
+							"name": "postdoc",
+							"value": 0,
+							"total": 9,
+							"parent":"career path"
+						},
+						{
+							"name": "university faculty",
+							"value": 0,
+							"total": 9,
+							"parent":"career path"
+						},
+						{
+							"name": "industry employee",
+							"value": 0,
+							"total": 9,
+							"parent":"career path"
+						},
+						{
+							"name": "government employee",
+							"value": 0,
+							"total": 9,
+							"parent":"career path"
+						},
+						{
+							"name": "nonprofit employee",
+							"value": 1,
+							"total":31,
+							"parent":"career path"
+						},
+						{
+							"name": "other",
+							"value": 0,
+							"total": 9,
+							"parent":"career path"
+						}
+					]
+				}
+			]
+		},
+		{"name": "theme",
+			"children": [
+				{"name": "topics",
+					"children": [
+						{
+							"name": "bias",
+							"value": 12, 
+							"total": 8,
+							"parent":"topics"
+						},
+						{
+							"name": "fairness",
+							"value": 3,
+							"total": 10,
+							"parent":"topics"
+						},
+						{
+							"name": "accountability",
+							"value": 3,
+							"total": 1,
+							"parent":"topics"
+						},
+						{
+							"name": "transparency",
+							"value": 12,
+							"total": 4,
+							"parent":"topics"
+						},
+						{
+							"name": "explainability",
+							"value": 13,
+							"total": 18,
+							"parent":"topics"
+						},
+						{
+							"name": "other",
+							"value": 1,
+							"total": 15,
+							"parent":"topics"
+						}
+					]
+				},
+				{"name": "domain",
+					"children": [
+						{
+							"name": "health",
+							"value": 1,
+							"total": 9,
+							"parent":"domain"
+						},
+						{
+							"name": "finance",
+							"value": 2,
+							"total": 19,
+							"parent":"domain"
+						},
+						{
+							"name": "urban dynamics",
+							"value": 3,
+							"total": 20,
+							"parent":"domain"
+						},
+						{
+							"name": "transport",
+							"value": 12,
+							"total": 35,
+							"parent":"domain"
+						},
+						{
+							"name": "military",
+							"value": 0,
+							"total": 15,
+							"parent":"domain"
+						},
+						{
+							"name": "social media",
+							"value": 23,
+							"total": 49,
+							"parent":"domain"
+						},
+						{
+							"name": "welfare and social care",
+							"value": 0,
+							"total": 4,
+							"parent":"domain"
+						},
+						{
+							"name": "policing",
+							"value": 13,
+							"total": 9,
+							"parent":"domain"
+						},
+						{
+							"name": "judicial system",
+							"value": 0,
+							"total": 9,
+							"parent":"domain"
+						},
+						{
+							"name": "accessibility",
+							"value": 0,
+							"total": 9,
+							"parent":"domain"
+						},
+						{
+							"name": "education",
+							"value": 0,
+							"total": 9,
+							"parent":"domain"
+						},
+						{
+							"name": "other",
+							"value": 0,
+							"total": 9,
+							"parent":"domain"
+						},						
+						{
+							"name": "n/a",
+							"value": 1,
+							"total": 9,
+							"parent":"domain"
+						}				
+					]
+				},
+				{"name": "outputs",
+					"children":[
+						{
+							"name": "academic papers",
+							"value": 1,
+							"total":31,
+							"parent":"outputs"
+						},
+						{
+							"name": "reports",
+							"value": 1,
+							"total":31,
+							"parent":"outputs"
+						},
+						{
+							"name": "policy-papers",
+							"value": 0,
+							"total": 9,
+							"parent":"outputs"
+						},
+						{
+							"name": "policy briefing",
+							"value": 12,
+							"total": 9,
+							"parent":"outputs"
+						},
+						{
+							"name": "blog posts",
+							"value": 0,
+							"total": 9,
+							"parent":"outputs"
+						},
+						{
+							"name": "exhibitions",
+							"value": 0,
+							"total": 9,
+							"parent":"outputs"
+						},
+						{
+							"name": "events",
+							"value": 0,
+							"total": 9,
+							"parent":"outputs"
+						},
+						{
+							"name": "datasets",
+							"value": 3,
+							"total": 9,
+							"parent":"outputs"
+						},
+						{
+							"name": "website",
+							"value": 0,
+							"total": 9,
+							"parent":"outputs"
+						},
+						{
+							"name": "code repository",
+							"value": 0,
+							"total": 9,
+							"parent":"outputs"
+						},
+						{
+							"name": "software application",
+							"value": 1,
+							"total":31,
+							"parent":"outputs"
+						},
+						{
+							"name": "other",
+							"value": 3,
+							"total": 9,
+							"parent":"outputs"
+						}
+					]
+				},
+
+				{"name": "audiences",
+					"children":[
+						{
+							"name": "internal audience",
+							"value": 0,
+							"total": 0,
+							"parent":"audiences"
+						},
+						{
+							"name": "academics",
+							"value": 1,
+							"total":31,
+							"parent":"audiences"
+						},
+						{
+							"name": "think tanks",
+							"value": 13,
+							"total":31,
+							"parent":"audiences"
+						},
+						{
+							"name": "NGOs",
+							"value": 1,
+							"total":31,
+							"parent":"audiences"
+						},
+						{
+							"name": "government institutions",
+							"value": 1,
+							"total":31,
+							"parent":"audiences"
+						},
+						{
+							"name": "artists",
+							"value": 0,
+							"total": 9,
+							"parent":"audiences"
+						},
+						{
+							"name": "designers",
+							"value": 1,
+							"total":31,
+							"parent":"audiences"
+						},
+						{
+							"name": "industry",
+							"value": 0,
+							"total": 9,
+							"parent":"audiences"
+						},
+						{
+							"name": "community organizations",
+							"value": 12,
+							"total":31,
+							"parent":"audiences"
+						},
+						{
+							"name": "general public",
+							"value": 0,
+							"total": 9,
+							"parent":"audiences"
+						},
+						{
+							"name": "other",
+							"value": 0,
+							"total": 9,
+							"parent":"audiences"
+						}
+					]
+				},
+				{"name": "collab type",
+					"children":[
+						{
+							"name": "within my organization",
+							"value": 0,
+							"total": 9,
+							"parent":"collab type"
+						},
+						{
+							"name": "with others outside my organization",
+							"value": 2,
+							"total":31,
+							"parent":"collab type"
+						},
+						{
+							"name": "both within and outside my organization",
+							"value": 13,
+							"total": 9,
+							"parent":"collab type"
+						},
+						{
+							"name": "no",
+							"value": 0,
+							"total": 9,
+							"parent":"collab type"
+						}
+					]
+				},
+				{"name": "collab field",
+					"children":[
+						{
+							"name": "Researchers - Social Science Researchers",
+							"value": 0,
+							"total": 9,
+							"parent":"collab field"
+						},
+						{
+							"name": "Researchers - Humanities",
+							"value": 0,
+							"total": 9,
+							"parent":"collab field"
+						},
+						{
+							"name": "Researchers - Law",
+							"value": 0,
+							"total": 9,
+							"parent":"collab field"
+						},
+						{
+							"name": "Researchers - Medicine",
+							"value": 123,
+							"total": 9,
+							"parent":"collab field"
+						},
+						{
+							"name": "Researchers - Science",
+							"value": 0,
+							"total": 9,
+							"parent":"collab field"
+						},
+						{
+							"name": "Artists and creative practitioners",
+							"value": 1,
+							"total":31,
+							"parent":"collab field"
+						},
+						{
+							"name": "Computer/Data Scientists",
+							"value": 0,
+							"total": 9,
+							"parent":"collab field"
+						},
+						{
+							"name": "Tech developers and Engineers",
+							"value": 1,
+							"total":31,
+							"parent":"collab field"
+						},
+						{
+							"name": "General public",
+							"value": 12,
+							"total":8,
+							"parent":"collab field"
+						},
+						{
+							"name": "Regulators",
+							"value": 23,
+							"total": 9,
+							"parent":"collab field"
+						},
+						{
+							"name": "NGOs",
+							"value": 12,
+							"total":8,
+							"parent":"collab field"
+						},
+						{
+							"name": "Affected individuals",
+							"value": 0,
+							"total": 9,
+							"parent":"collab field"
+						},
+						{
+							"name": "Government officials",
+							"value": 0,
+							"total": 9,
+							"parent":"collab field"
+						},
+						{
+							"name": "Community organizations",
+							"value": 0,
+							"total": 9,
+							"parent":"collab field"
+						},
+						{
+							"name": "Industry representatives",
+							"value": 0,
+							"total": 9,
+							"parent":"collab field"
+						},
+						{
+							"name": "Others",
+							"value": 0,
+							"total": 9,
+							"parent":"collab field"
+						}
+					]
+				}
+			]
+		},
+	{"responses": 70}
+	]
+}
