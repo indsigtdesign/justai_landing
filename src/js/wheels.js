@@ -1,10 +1,12 @@
+const div = document.getElementById('wheel-container')
+const { width, height } = div.getBoundingClientRect()
+
+const leftMargin = 100
+const topMargin = leftMargin
+
 // wheel :: (Object, Boolean) -> undefined
 export function wheel(data, init) {
-  const div = document.getElementById('wheel-container')
-  const { width, height } = div.getBoundingClientRect()
-
-  const leftMargin = 100
-  const topMargin = leftMargin
+  d3.select('#wheel-container').selectAll('svg').remove()
 
   let svg = d3
     .select('#wheel-container')

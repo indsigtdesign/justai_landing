@@ -6,14 +6,6 @@ const width = rect.width
 const height = rect.height
 const radius = width / 1.5
 
-let svg = d3
-  .selectAll('.fingerprint-container')
-  .append('svg')
-  .attr('width', width)
-  .attr('height', height)
-  .append('g')
-  .attr('transform', 'translate(' + width / 2 + ',' + radius / 1.2 + ')')
-
 const stratify = d3.cluster().size([2 * Math.PI, radius - 100])
 
 const idColors = [
@@ -58,6 +50,18 @@ const colTHEME = d3.scaleOrdinal().domain(themeNums).range(themeColors)
 
 // dendro :: (Object, Boolean) -> undefined
 export function dendro(data, init) {
+  let svg
+  if (init) {
+    svg = d3
+      .selectAll('.fingerprint-container')
+      .append('svg')
+      .attr('width', width)
+      .attr('height', height)
+      .append('g')
+      .attr('transform', 'translate(' + width / 2 + ',' + radius / 1.2 + ')')
+  } else {
+    svg = d3.selectAll('.fingerprint-container').selectAll('svg').selectAll('g')
+  }
   const [dataFirst, dataSecond, ignoreMe] = data.children
   const dataSlim = { ...data, children: [dataFirst, dataSecond] }
   const sortData = d3.hierarchy(dataSlim)

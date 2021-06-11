@@ -23,13 +23,12 @@ const SUPABASE_PUBLIC_KEY =
 const api = createClient(SUPABASE_URL, SUPABASE_PUBLIC_KEY)
 
 const init = async () => {
-  const dataP = api
+  // get latest count
+  const { error, count } = await api
     .from('data')
-    .select()
-    .order('created_time', { ascending: true })
-    .limit(1)
-    .single()
+    .select('id', { count: 'exact' })
 
+  // subscribe on latest survey answers
   const subscription = api
     .from('data')
     .on('INSERT', (payload) => {
@@ -46,22 +45,35 @@ const init = async () => {
     })
     .subscribe()
 
-  const { data: data, error: err } = await dataP
-  if (err) {
-    console.error(err)
-    return
-  }
+  // get pre-generated json
+  const oldData = await fetch('./data/data.json')
+    .then((it) => it.json())
+    .catch((it) => 'ignore')
 
-  triggerGeneratingJson(data)
-    .then((data) => {
-      dendro(data, false)
-      return data
-    })
-    .then((data) => {
-      wheel(data, false)
-      return data
-    })
-    .catch(console.error) // initial trigger
+  if (!oldData || oldData.children[2].responses !== count) {
+    const dataP = api
+      .from('data')
+      .select()
+      .order('created_time', { ascending: false })
+      .limit(1)
+      .single()
+
+    const { data: data, error: err } = await dataP
+    if (err) {
+      console.error(err)
+      return
+    }
+    triggerGeneratingJson(data)
+      .then((data) => {
+        dendro(data, false)
+        return data
+      })
+      .then((data) => {
+        wheel(data, false)
+        return data
+      })
+      .catch(console.error) // initial trigger
+  }
 
   // remove subscription if user is about to close the window
   window.addEventListener('beforeunload', function (event) {
@@ -70,8 +82,7 @@ const init = async () => {
   })
 }
 
-const triggerGeneratingJson = async (data) => {
-  const countP = api.from('data').select('id', { count: 'exact' })
+const triggerGeneratingJson = async (data, cnt) => {
   const q70P = api.from('group_by_70').select()
   const q71P = api.from('group_by_71').select()
   const q65P = api.from('group_by_65').select()
@@ -88,7 +99,16 @@ const triggerGeneratingJson = async (data) => {
 
   // await the promises
   // data :: Object
-  const { error: err1, count } = await countP
+  let count = cnt
+  if (count) {
+    const countP = api.from('data').select('id', { count: 'exact' })
+    const { error: err1, count: countNew } = await countP
+    if (err1) {
+      console.error('API-ERROR:\n', err1)
+      return
+    }
+    count = countNew
+  }
   const { data: q70, error: err2 } = await q70P
   const { data: q71, error: err3 } = await q71P
   const { data: q65, error: err4 } = await q65P
@@ -104,7 +124,6 @@ const triggerGeneratingJson = async (data) => {
   const { data: q36_q142_q158, error: err13 } = await q36q142q158P
 
   const error =
-    err1 ||
     err2 ||
     err3 ||
     err4 ||
