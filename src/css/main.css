@@ -120,6 +120,54 @@ textarea {
     display: none;
    }
 
+
+   #tooltip{
+    position: fixed;
+    z-index: 10000;
+    width: 190px;
+    background: whitesmoke;
+    border: 2px;        
+    border-radius: 6px;         
+    border-color: white;
+    border-style: solid;
+    transform:scale(0);
+    transform-origin:bottom left;
+   }   
+  #tooltip.active {
+    transform:scale(1);
+  }
+  
+  #tooltip .item {
+    padding:8px 10px;
+    font-size:15px;
+    color:black;
+  }
+  
+  #tooltip .item i {
+    display: inline-block;
+    margin-right: 5px;
+  }
+  
+  #tooltip hr {
+    margin: 5px 0px;
+    border-color: whitesmoke;
+  }
+
+  #tooltip .item::after {
+    content: " ";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -10px;
+    border-width: 10px;
+    border-style: solid;
+    border-color: whitesmoke transparent transparent transparent;
+  }
+
+
+
+
+  
    #wheel-container{
     max-width: 1060px;
     max-height: 700px;

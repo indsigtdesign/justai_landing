@@ -1,4 +1,5 @@
 d3.json('./data/data.json').then(function (data) {
+  console.log(data);
   var div = document.getElementById('wheel-container')
   var rect = div.getBoundingClientRect()
   width = rect.width
@@ -215,7 +216,6 @@ d3.json('./data/data.json').then(function (data) {
     .join('g')
     .attr('class', function (d, i) {
       return d.name
-      // posID[i].id;
     })
     .attr('transform', function (d, i) {
       if (posID[i].id == d.name) {
@@ -344,7 +344,7 @@ d3.json('./data/data.json').then(function (data) {
       if (d.value == 1) {
         return colID(d.parent)
       } else {
-        return 'none'
+        return 'black'
       }
     })
     .attr('stroke', function (d) {
@@ -458,6 +458,7 @@ d3.json('./data/data.json').then(function (data) {
     })
     .attr('stroke-width', strokeMin)
     .attr('height', maxBar)
+
   var rectTheme = gthe
     .selectAll('.rectTHE')
     .data((d) => d.children)
@@ -474,7 +475,7 @@ d3.json('./data/data.json').then(function (data) {
       if (d.value > 0) {
         return colTHEME(d.value)
       } else {
-        return 'none'
+        return 'black'
       }
     })
     .attr('x', function (d) {
@@ -518,11 +519,12 @@ d3.json('./data/data.json').then(function (data) {
         return strokeNormal
       }
     })
+    .on('mouseenter', mouseEnter)
+    .on('mouseleave', mouseLeave)
+
   maxTheme = d3.max(theVals)
 
-  //THIS SHOULD BE TOTAL NUM RESPONDENTS SO FAR
   maxTotal = sdata[2].responses
-
   if (maxTotal > 0) {
     barScale.domain([0, maxTotal])
     rectIdentity
@@ -539,6 +541,38 @@ d3.json('./data/data.json').then(function (data) {
       })
   }
 
+  function mouseEnter(event, d) {
+    d3.select(this)
+      .attr('stroke-width', strokeHighlight*2)
+
+    var tooltip = document.getElementById('tooltip')
+
+    console.log(d);
+    tooltip.style.top = `${(d.y - (tooltip.clientHeight / 2))}px`; 
+    tooltip.style.left = `${(d.x + 35)}px`;
+
+    tooltip.classList.add('active')
+    document.getElementById('tooltip_id').innerHTML = d.value
+    document.getElementById('tooltip_name').innerHTML = d.total
+  }
+  function mouseLeave(d) {
+      d3.select(this)
+        .attr('stroke-width', function (d) {
+          if (d.value > 0) {
+            return strokeHighlight
+          } else {
+            return strokeNormal
+          }
+        })      
+      document.getElementById('tooltip').classList.remove('active')
+  }
+
+
+
+
+
+
+
   var zoom = d3
     .zoom()
     .extent([
@@ -550,7 +584,7 @@ d3.json('./data/data.json').then(function (data) {
 
   svg.call(zoom.scaleBy, 2)
 
-  // svg.on("click", reset);
+  // svg.on('click', reset);
 
   function zoomed({ transform }) {
     g.attr('transform', transform)
@@ -632,7 +666,7 @@ d3.json('./data/data.json').then(function (data) {
   d3.select('#self-highlight-off').on('click', function () {
     d3.selectAll('.rectID, .rectTHE')
       .transition()
-      .attr('fill', 'none')
+      .attr('fill', 'black')
       .transition()
       .attr('stroke-width', strokeHighlight)
   })
@@ -641,7 +675,7 @@ d3.json('./data/data.json').then(function (data) {
       if (d.value == 1) {
         return colID(d.parent)
       } else {
-        return 'none'
+        return 'black'
       }
     })
     .transition()
@@ -657,7 +691,7 @@ d3.json('./data/data.json').then(function (data) {
       if (d.value > 0) {
         return colTHEME(d.value)
       } else {
-        return 'none'
+        return 'black'
       }
     })
     .transition()
