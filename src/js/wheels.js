@@ -1,8 +1,6 @@
 export function wheel(data) {
   const div = document.getElementById('wheel-container')
-  const rect = div.getBoundingClientRect()
-  const width = rect.width
-  const height = rect.height
+  const { width, height } = div.getBoundingClientRect()
 
   const leftMargin = 100
   const topMargin = leftMargin

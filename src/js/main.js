@@ -62,6 +62,12 @@ const init = async () => {
       return data
     })
     .catch(console.error) // initial trigger
+
+  // remove subscription if user is about to close the window
+  window.addEventListener('beforeunload', function (event) {
+    api.removeSubscription(subscription)
+    return event
+  })
 }
 
 const triggerGeneratingJson = async (data) => {
