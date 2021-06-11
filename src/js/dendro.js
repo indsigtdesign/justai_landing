@@ -74,13 +74,7 @@ d3.json('./data/data.json').then(function (data) {
     .join('path')
     .attr('class', 'drawing')
     .attr('stroke-width', function (d) {
-      if (
-        d.target.data.value != undefined &&
-        d.target.data.value != 1 &&
-        d.target.data.value != 2 &&
-        d.target.data.value != 3 &&
-        d.target.data.value != 12
-      ) {
+      if (d.target.data.value!=undefined && d.target.data.value<1){
         return 1
       } else {
         return 1.5
