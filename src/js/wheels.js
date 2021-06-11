@@ -1,4 +1,5 @@
-export function wheel(data) {
+// wheel :: (Object, Boolean) -> undefined
+export function wheel(data, init) {
   const div = document.getElementById('wheel-container')
   const { width, height } = div.getBoundingClientRect()
 

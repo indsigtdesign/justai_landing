@@ -26,7 +26,7 @@ const init = async () => {
   const dataP = api
     .from('data')
     .select()
-    .order('created_time', { ascending: false })
+    .order('created_time', { ascending: true })
     .limit(1)
     .single()
 
@@ -35,11 +35,11 @@ const init = async () => {
     .on('INSERT', (payload) => {
       triggerGeneratingJson(payload.new)
         .then((data) => {
-          dendro(data)
+          dendro(data, false)
           return data
         })
         .then((data) => {
-          wheel(data)
+          wheel(data, false)
           return data
         })
         .catch(console.error) // with latest data object
@@ -54,11 +54,11 @@ const init = async () => {
 
   triggerGeneratingJson(data)
     .then((data) => {
-      dendro(data)
+      dendro(data, false)
       return data
     })
     .then((data) => {
-      wheel(data)
+      wheel(data, false)
       return data
     })
     .catch(console.error) // initial trigger
