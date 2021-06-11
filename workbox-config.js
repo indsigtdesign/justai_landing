@@ -1,8 +1,8 @@
 module.exports = {
   cacheId: 'justAI',
-  globDirectory: '_site/',
-  globPatterns: ['**/*.{css,js,json}'],
-  swDest: '_site/sw.js',
+  globDirectory: 'dist',
+  globPatterns: ['**/*.{css,js}'],
+  swDest: 'dist/sw.js',
 
   runtimeCaching: [
     {
