@@ -1,38 +1,36 @@
-d3.json('./data/data.json').then(function (data) {
-  console.log(data);
-  var div = document.getElementById('wheel-container')
-  var rect = div.getBoundingClientRect()
-  width = rect.width
-  height = rect.height
+export function wheel(data) {
+  const div = document.getElementById('wheel-container')
+  const rect = div.getBoundingClientRect()
+  const width = rect.width
+  const height = rect.height
 
-  var leftMargin = 100
-  var topMargin = leftMargin
+  const leftMargin = 100
+  const topMargin = leftMargin
 
-  var svg = d3
+  let svg = d3
     .select('#wheel-container')
     .append('svg')
     .attr('width', width)
     .attr('height', height)
     .attr('viewBox', [0, 0, width, height])
 
-  var g = svg.append('g')
+  let g = svg.append('g')
 
-  var sdata
-  var figDepth = 2
-  var paddingX = width / 15
-  var paddingY = height / 14
+  const figDepth = 2
+  const paddingX = width / 15
+  const paddingY = height / 14
 
-  var centerEX = width / 2 - paddingX * 2
-  var centerEH = height / figDepth
+  const centerEX = width / 2 - paddingX * 2
+  const centerEH = height / figDepth
 
-  var innerCircRad = width / 40
-  var smallMarg = innerCircRad / 2
+  const innerCircRad = width / 40
+  const smallMarg = innerCircRad / 2
   //CHANGES HERE: CAREFUL!
-  var maxRad = 40 // (height/10);
-  var minRad = 7.5
-  var maxBar = minRad * 4
+  const maxRad = 40 // (height/10);
+  const minRad = 7.5
+  const maxBar = minRad * 4
 
-  var idColors = [
+  const idColors = [
     '#4EA8BA',
     '#4EA8BA',
     '#46AAB3',
@@ -40,7 +38,7 @@ d3.json('./data/data.json').then(function (data) {
     '#9A99FF',
     '#65A4CF',
   ]
-  var idNames = [
+  const idNames = [
     'self-ethicist',
     'others-ethicist',
     'paid work',
@@ -48,7 +46,7 @@ d3.json('./data/data.json').then(function (data) {
     'education',
     'career path',
   ]
-  var themeColors = [
+  const themeColors = [
     '#CB9AC6',
     '#FDCC9A',
     '#B668AA',
@@ -58,14 +56,14 @@ d3.json('./data/data.json').then(function (data) {
     '#EB9C84',
     '#CB9AC6',
   ]
-  var themeNums = [0, 1, 2, 3, 12, 23, 13, 123]
-  var strokeHighlight = 0.5
-  var strokeNormal = 0.2
-  var strokeMin = 0.2
+  const themeNums = [0, 1, 2, 3, 12, 23, 13, 123]
+  const strokeHighlight = 0.5
+  const strokeNormal = 0.2
+  const strokeMin = 0.2
 
-  var colID = d3.scaleOrdinal().domain(idNames).range(idColors)
-  var colTHEME = d3.scaleOrdinal().domain(themeNums).range(themeColors)
-  var posID = [
+  const colID = d3.scaleOrdinal().domain(idNames).range(idColors)
+  const colTHEME = d3.scaleOrdinal().domain(themeNums).range(themeColors)
+  const posID = [
     {
       x: centerEX + paddingX + smallMarg * 2,
       y: centerEH - paddingY - smallMarg,
@@ -103,7 +101,7 @@ d3.json('./data/data.json').then(function (data) {
       id: 'career path',
     },
   ]
-  var posTh = [
+  const posTh = [
     {
       x: centerEX + paddingX * 3,
       y: centerEH - paddingY - smallMarg * 3,
@@ -142,43 +140,43 @@ d3.json('./data/data.json').then(function (data) {
     },
   ]
 
-  var idLine = [posID[5], posID[1], posID[0], posID[2], posID[4]]
-  var themeLine = [posTh[5], posTh[4], posTh[0], posTh[1], posTh[2], posTh[3]]
-  var cnctLine = [posID[0], posTh[0]]
-  var yearLine = [posID[3], posID[0]]
-  var originX = 0
-  var originY = 0
+  const idLine = [posID[5], posID[1], posID[0], posID[2], posID[4]]
+  const themeLine = [posTh[5], posTh[4], posTh[0], posTh[1], posTh[2], posTh[3]]
+  const cnctLine = [posID[0], posTh[0]]
+  const yearLine = [posID[3], posID[0]]
+  const originX = 0
+  const originY = 0
 
-  var idVals = []
-  var theVals = []
-  var maxTotal = 0
-  var maxTheme,
-    maxId = 0
-  var barScale = d3.scaleLinear().domain([0, maxTotal]).range([1, maxBar])
+  const idVals = []
+  const theVals = []
+  let maxTotal = 0
+  let maxTheme
+  let maxId = 0
+  const barScale = d3.scaleLinear().domain([0, maxTotal]).range([1, maxBar])
 
-  var yearsMax = 52
-  var yearScale = d3.scaleLinear().domain([0, yearsMax]).range([0, 360])
+  const yearsMax = 52
+  const yearScale = d3.scaleLinear().domain([0, yearsMax]).range([0, 360])
 
-  var widthScale = d3.scaleLinear().domain([0, 100]).range([5, 0.5])
+  const widthScale = d3.scaleLinear().domain([0, 100]).range([5, 0.5])
 
-  // var radiusScale = d3.scaleLinear()
+  // const radiusScale = d3.scaleLinear()
   // 	.domain([2, 52])
   // 	.range([innerCircRad/2, outerCircleRadius])
-  var radiusScale = d3.scaleLinear().domain([2, 52]).range([minRad, maxRad])
+  const radiusScale = d3.scaleLinear().domain([2, 52]).range([minRad, maxRad])
 
-  var barwide = 3
-  var barSpaceSm = minRad + 2
-  var barSpace = 3
+  const barwide = 3
+  const barSpaceSm = minRad + 2
+  const barSpace = 3
 
-  var barSpaceEd = 3
-  var barSpaceCo = 4
-  var barSpaceCa = 6
-  var barSpaceCd = 5
-  var barSpaceTo = minRad
+  const barSpaceEd = 3
+  const barSpaceCo = 4
+  const barSpaceCa = 6
+  const barSpaceCd = 5
+  const barSpaceTo = minRad
 
-  var yearsRadius = maxRad / 1.8
-  var lengths = []
-  var ft = 8
+  const yearsRadius = maxRad / 1.8
+  let lengths = []
+  const ft = 8
 
   function measureText(string, fontSize = ft) {
     const widths = [
@@ -208,9 +206,9 @@ d3.json('./data/data.json').then(function (data) {
         .reduce((cur, acc) => acc + cur) * fontSize
     )
   }
-  sdata = data.children
+  let sdata = data.children
 
-  var gid = g
+  const gid = g
     .selectAll('.gID')
     .data(sdata[0].children)
     .join('g')
@@ -223,7 +221,7 @@ d3.json('./data/data.json').then(function (data) {
       }
     })
 
-  var innerCirc = gid
+  const innerCirc = gid
     .append('circle')
     .attr('class', 'innerCirc')
     .attr('cx', 0)
@@ -239,7 +237,7 @@ d3.json('./data/data.json').then(function (data) {
     .attr('fill', 'none')
     .attr('stroke', 'lightgrey')
 
-  var gthe = g
+  const gthe = g
     .selectAll('.gTHE')
     .data(sdata[1].children)
     .join('g')
@@ -249,7 +247,7 @@ d3.json('./data/data.json').then(function (data) {
     .attr('transform', function (d, i) {
       return `translate(${posTh[i].x}, ${posTh[i].y}), rotate(${posTh[i].rot},0,0)`
     })
-  var innerCircTheme = gthe
+  const innerCircTheme = gthe
     .append('circle')
     .attr('class', 'innerCircTheme')
     .attr('cx', originX)
@@ -261,7 +259,7 @@ d3.json('./data/data.json').then(function (data) {
     .attr('fill', 'none')
     .attr('stroke', 'lightgrey')
 
-  var rectMaxID = gid
+  const rectMaxID = gid
     .selectAll('.rectMaxID')
     .data((d) => d.children)
     .join('rect')
@@ -274,7 +272,8 @@ d3.json('./data/data.json').then(function (data) {
       }
     })
     .attr('x', function (d) {
-      for (i = 0; i < lengths.length; i++) {
+      let radiusHere
+      for (let i = 0; i < lengths.length; i++) {
         if (d.parent == lengths[i].name) {
           radiusHere = radiusScale(lengths[i].num)
         }
@@ -286,7 +285,8 @@ d3.json('./data/data.json').then(function (data) {
       }
     })
     .attr('y', function (d) {
-      for (i = 0; i < lengths.length; i++) {
+      let radiusHere
+      for (let i = 0; i < lengths.length; i++) {
         if (d.parent == lengths[i].name) {
           radiusHere = radiusScale(lengths[i].num)
         }
@@ -325,7 +325,7 @@ d3.json('./data/data.json').then(function (data) {
     .attr('stroke-width', strokeMin)
     .attr('height', maxBar)
 
-  var rectIdentity = gid
+  let rectIdentity = gid
     .selectAll('.rectID')
     .data((d) => d.children)
     .join('rect')
@@ -358,7 +358,8 @@ d3.json('./data/data.json').then(function (data) {
       }
     })
     .attr('x', function (d) {
-      for (i = 0; i < lengths.length; i++) {
+      let radiusHere
+      for (let i = 0; i < lengths.length; i++) {
         if (d.parent == lengths[i].name) {
           radiusHere = radiusScale(lengths[i].num)
         }
@@ -370,7 +371,8 @@ d3.json('./data/data.json').then(function (data) {
       }
     })
     .attr('y', function (d) {
-      for (i = 0; i < lengths.length; i++) {
+      let radiusHere
+      for (let i = 0; i < lengths.length; i++) {
         if (d.parent == lengths[i].name) {
           radiusHere = radiusScale(lengths[i].num)
         }
@@ -405,7 +407,7 @@ d3.json('./data/data.json').then(function (data) {
   rectIdentity.append('title').text((d) => `${d.name}`)
   maxId = d3.max(idVals)
 
-  var rectMaxTH = gthe
+  const rectMaxTH = gthe
     .selectAll('.rectMaxTH')
     .data((d) => d.children)
     .join('rect')
@@ -419,7 +421,8 @@ d3.json('./data/data.json').then(function (data) {
     })
     .attr('fill', 'none')
     .attr('x', function (d) {
-      for (i = 0; i < lengths.length; i++) {
+      let radiusHere
+      for (let i = 0; i < lengths.length; i++) {
         if (d.parent == lengths[i].name) {
           radiusHere = radiusScale(lengths[i].num)
         }
@@ -427,7 +430,8 @@ d3.json('./data/data.json').then(function (data) {
       return originX + radiusHere * Math.sin(0)
     })
     .attr('y', function (d) {
-      for (i = 0; i < lengths.length; i++) {
+      let radiusHere
+      for (let i = 0; i < lengths.length; i++) {
         if (d.parent == lengths[i].name) {
           radiusHere = radiusScale(lengths[i].num)
         }
@@ -459,7 +463,7 @@ d3.json('./data/data.json').then(function (data) {
     .attr('stroke-width', strokeMin)
     .attr('height', maxBar)
 
-  var rectTheme = gthe
+  let rectTheme = gthe
     .selectAll('.rectTHE')
     .data((d) => d.children)
     .join('rect')
@@ -479,7 +483,8 @@ d3.json('./data/data.json').then(function (data) {
       }
     })
     .attr('x', function (d) {
-      for (i = 0; i < lengths.length; i++) {
+      let radiusHere
+      for (let i = 0; i < lengths.length; i++) {
         if (d.parent == lengths[i].name) {
           radiusHere = radiusScale(lengths[i].num)
         }
@@ -487,7 +492,8 @@ d3.json('./data/data.json').then(function (data) {
       return originX + radiusHere * Math.sin(0)
     })
     .attr('y', function (d) {
-      for (i = 0; i < lengths.length; i++) {
+      let radiusHere
+      for (let i = 0; i < lengths.length; i++) {
         if (d.parent == lengths[i].name) {
           radiusHere = radiusScale(lengths[i].num)
         }
@@ -542,38 +548,30 @@ d3.json('./data/data.json').then(function (data) {
   }
 
   function mouseEnter(event, d) {
-    d3.select(this)
-      .attr('stroke-width', strokeHighlight*2)
+    d3.select(this).attr('stroke-width', strokeHighlight * 2)
 
-    var tooltip = document.getElementById('tooltip')
+    let tooltip = document.getElementById('tooltip')
 
-    console.log(d);
-    tooltip.style.top = `${(d.y - (tooltip.clientHeight / 2))}px`; 
-    tooltip.style.left = `${(d.x + 35)}px`;
+    console.log(d)
+    tooltip.style.top = `${d.y - tooltip.clientHeight / 2}px`
+    tooltip.style.left = `${d.x + 35}px`
 
     tooltip.classList.add('active')
     document.getElementById('tooltip_id').innerHTML = d.value
     document.getElementById('tooltip_name').innerHTML = d.total
   }
   function mouseLeave(d) {
-      d3.select(this)
-        .attr('stroke-width', function (d) {
-          if (d.value > 0) {
-            return strokeHighlight
-          } else {
-            return strokeNormal
-          }
-        })      
-      document.getElementById('tooltip').classList.remove('active')
+    d3.select(this).attr('stroke-width', function (d) {
+      if (d.value > 0) {
+        return strokeHighlight
+      } else {
+        return strokeNormal
+      }
+    })
+    document.getElementById('tooltip').classList.remove('active')
   }
 
-
-
-
-
-
-
-  var zoom = d3
+  const zoom = d3
     .zoom()
     .extent([
       [0, 0],
@@ -601,7 +599,7 @@ d3.json('./data/data.json').then(function (data) {
       )
   }
 
-  var valueline = d3
+  const valueline = d3
     .line()
     .x(function (d) {
       return d.x
@@ -625,7 +623,7 @@ d3.json('./data/data.json').then(function (data) {
     .style('stroke-width', 0.5)
   d3.selectAll('.innerCirc, .innerCircTheme').attr('stroke-width', 0.3)
 
-  var idText = gid
+  const idText = gid
     .append('text')
     .attr('class', 'idText')
     .attr('font-size', ft)
@@ -638,8 +636,8 @@ d3.json('./data/data.json').then(function (data) {
     .attr('fill', 'none')
     .text(function (d, i) {
       return 1 + i
-    }) 
-  var themeText = gthe
+    })
+  const themeText = gthe
     .append('text')
     .attr('class', 'themeText')
     .attr('font-size', ft)
@@ -653,7 +651,7 @@ d3.json('./data/data.json').then(function (data) {
     .text(function (d, i) {
       return 7 + i
     })
-  var key = svg
+  const key = svg
     .append('image')
     .attr('class', 'keyImg')
     .attr('x', 0)
@@ -661,7 +659,6 @@ d3.json('./data/data.json').then(function (data) {
     .attr('width', width)
     .attr('height', 0)
     .attr('xlink:href', 'img/wheels_key.svg')
-
 
   d3.select('#self-highlight-off').on('click', function () {
     d3.selectAll('.rectID, .rectTHE')
@@ -671,38 +668,41 @@ d3.json('./data/data.json').then(function (data) {
       .attr('stroke-width', strokeHighlight)
   })
   d3.select('#self-highlight-on').on('click', function () {
-    d3.selectAll('.rectID').transition().attr('fill',function (d) {
-      if (d.value == 1) {
-        return colID(d.parent)
-      } else {
-        return 'black'
-      }
-    })
-    .transition()
-    .attr('stroke-width', function (d) {
-      if (d.value == 1) {
-        return strokeHighlight
-      } else {
-        return strokeNormal
-      }
-    })
+    d3.selectAll('.rectID')
+      .transition()
+      .attr('fill', function (d) {
+        if (d.value == 1) {
+          return colID(d.parent)
+        } else {
+          return 'black'
+        }
+      })
+      .transition()
+      .attr('stroke-width', function (d) {
+        if (d.value == 1) {
+          return strokeHighlight
+        } else {
+          return strokeNormal
+        }
+      })
 
-    d3.selectAll('.rectTHE').transition().attr('fill', function (d) {
-      if (d.value > 0) {
-        return colTHEME(d.value)
-      } else {
-        return 'black'
-      }
-    })
-    .transition()
-    .attr('stroke-width', function (d) {
-      if (d.value > 0) {
-        return strokeHighlight
-      } else {
-        return strokeNormal
-      }
-    })
-
+    d3.selectAll('.rectTHE')
+      .transition()
+      .attr('fill', function (d) {
+        if (d.value > 0) {
+          return colTHEME(d.value)
+        } else {
+          return 'black'
+        }
+      })
+      .transition()
+      .attr('stroke-width', function (d) {
+        if (d.value > 0) {
+          return strokeHighlight
+        } else {
+          return strokeNormal
+        }
+      })
   })
 
   d3.select('#wheels-labels-on').on('click', function () {
@@ -719,4 +719,4 @@ d3.json('./data/data.json').then(function (data) {
     d3.selectAll('.idText, .themeText').attr('fill', 'none')
     d3.selectAll('.keyImg').transition().attr('height', 0)
   })
-})
+}

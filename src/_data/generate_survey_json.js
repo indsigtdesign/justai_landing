@@ -13,7 +13,7 @@ const {
   getAudience,
   getCollabType,
   getCollabField,
-} = require('../js/reshape-data.js')
+} = require('../js/reshape-data-node.js')
 
 dotenv.config() // load env
 const api = SUPA.createClient(

@@ -1,25 +1,24 @@
 // read json data
-d3.json('./data/data.json').then(function (data) {
+export function dendro(data) {
+  const div = document.getElementById('fingerprint')
+  const rect = div.getBoundingClientRect()
+  const x = rect.left
+  const y = rect.top
+  const width = rect.width
+  const height = rect.height
+  const radius = width / 1.5
 
-  var div = document.getElementById('fingerprint')
-  var rect = div.getBoundingClientRect()
-  x = rect.left
-  y = rect.top
-  width = rect.width
-  height = rect.height
-  var radius = width / 1.5
-
-  var svg = d3
+  let svg = d3
     .selectAll('.fingerprint-container')
     .append('svg')
     .attr('width', width)
     .attr('height', height)
     .append('g')
-    .attr('transform', 'translate(' + width / 2 + ',' + radius/1.2 + ')')
+    .attr('transform', 'translate(' + width / 2 + ',' + radius / 1.2 + ')')
 
-  var stratify = d3.cluster().size([2 * Math.PI, radius - 100])
+  const stratify = d3.cluster().size([2 * Math.PI, radius - 100])
 
-  var idColors = [
+  const idColors = [
     '#4EA8BA',
     '#4EA8BA',
     '#46AAB3',
@@ -27,7 +26,7 @@ d3.json('./data/data.json').then(function (data) {
     '#9A99FF',
     '#65A4CF',
   ]
-  var idNames = [
+  const idNames = [
     'self-ethicist',
     'others-ethicist',
     'paid work',
@@ -36,7 +35,7 @@ d3.json('./data/data.json').then(function (data) {
     'career path',
   ]
 
-  var themeColors = [
+  const themeColors = [
     '#CB9AC6',
     '#FDCC9A',
     '#B668AA',
@@ -46,8 +45,8 @@ d3.json('./data/data.json').then(function (data) {
     '#EB9C84',
     '#CB9AC6',
   ]
-  var themeNums = [0, 1, 2, 3, 12, 23, 13, 123]
-  var themeNames = [
+  const themeNums = [0, 1, 2, 3, 12, 23, 13, 123]
+  const themeNames = [
     'topics',
     'domain',
     'outputs',
@@ -56,14 +55,15 @@ d3.json('./data/data.json').then(function (data) {
     'collab field',
   ]
 
-  var colID = d3.scaleOrdinal().domain(idNames).range(idColors)
-  var colTHEME = d3.scaleOrdinal().domain(themeNums).range(themeColors)
+  const colID = d3.scaleOrdinal().domain(idNames).range(idColors)
+  const colTHEME = d3.scaleOrdinal().domain(themeNums).range(themeColors)
 
-  var sdata
-  data.children.pop()
-  sortData = d3.hierarchy(data)
+  const [dataFirst, dataSecond, ignoreMe] = data.children
+  const dataSlim = { ...data, children: [dataFirst, dataSecond] }
 
-  var root = stratify(sortData)
+  const sortData = d3.hierarchy(dataSlim)
+
+  const root = stratify(sortData)
 
   svg
     .append('g')
@@ -74,7 +74,7 @@ d3.json('./data/data.json').then(function (data) {
     .join('path')
     .attr('class', 'drawing')
     .attr('stroke-width', function (d) {
-      if (d.target.data.value!=undefined && d.target.data.value<1){
+      if (d.target.data.value != undefined && d.target.data.value < 1) {
         return 1
       } else {
         return 1.5
@@ -100,12 +100,12 @@ d3.json('./data/data.json').then(function (data) {
     })
     .attr('stroke', function (d) {
       if (d.target.data.value >= 0) {
-        for (i = 0; i < idNames.length; i++) {
+        for (let i = 0; i < idNames.length; i++) {
           if (d.source.data.name == idNames[i]) {
             return colID(d.source.data.name)
           }
         }
-        for (j = 0; j < idNames.length; j++) {
+        for (let j = 0; j < idNames.length; j++) {
           if (d.source.data.name == themeNames[j]) {
             return colTHEME(d.target.data.value)
           }
@@ -147,9 +147,9 @@ d3.json('./data/data.json').then(function (data) {
     .data(root.descendants())
     .join('text')
     .filter(function (d) {
-      return d.children 
+      return d.children
     })
-    .attr('class','dendroText')
+    .attr('class', 'dendroText')
     .attr(
       'transform',
       (d) => `
@@ -180,4 +180,4 @@ d3.json('./data/data.json').then(function (data) {
   d3.selectAll('.dendro-labels-off').on('click', function () {
     d3.selectAll('.dendroText').transition().attr('fill', 'none')
   })
-})
+}
