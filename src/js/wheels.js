@@ -405,7 +405,6 @@ export function wheel(data, init) {
       }
     })
     .attr('height', 0)
-  rectIdentity.append('title').text((d) => `${d.name}`)
   maxId = d3.max(idVals)
 
   const rectMaxTH = gthe
