@@ -588,7 +588,7 @@ export function wheel(data, init) {
     .scaleExtent([1, 8])
     .on('zoom', zoomed)
 
-  svg.call(zoom.scaleBy, 2)
+  svg.call(zoom.scaleBy, 1.9)
 
   // svg.on('click', reset);
 
@@ -657,16 +657,20 @@ export function wheel(data, init) {
     })
     .attr('fill', 'none')
     .text(function (d, i) {
+      console.log(width)
       return 7 + i
     })
   const key = svg
     .append('image')
-    .attr('class', 'keyImg')
-    .attr('x', 0)
-    .attr('y', height - 300)
-    .attr('width', width)
+    .attr('class','key')
+    .attr('x', width/15)
+    .attr('y', height-270)
+    .attr('width', width-width/15)
     .attr('height', 0)
-    .attr('xlink:href', 'img/wheels_key.svg')
+    .attr('xlink:href', 'img/wheel-key-spread.svg')
+
+
+
 
   d3.select('#self-highlight-off').on('click', function () {
     d3.selectAll('.rectID, .rectTHE')
@@ -718,13 +722,13 @@ export function wheel(data, init) {
     d3.selectAll('.innerCirc, .innerCircTheme').attr('opacity', 0.1)
     d3.selectAll('.rectID, .rectTHE').attr('opacity', '.3')
     d3.selectAll('.idText, .themeText').attr('fill', 'white')
-    d3.selectAll('.keyImg').transition().attr('height', 300)
+    d3.select('.key').transition().attr('height', 300)
   })
   d3.select('#wheels-labels-off').on('click', function () {
     d3.selectAll('.rectID, .rectTHE').attr('opacity', '1')
     d3.selectAll('.lineID, .yearID, .lineTH, .lineCN').attr('opacity', '.3')
     d3.selectAll('.innerCirc, .innerCircTheme').attr('opacity', 0.5)
     d3.selectAll('.idText, .themeText').attr('fill', 'none')
-    d3.selectAll('.keyImg').transition().attr('height', 0)
+    d3.select('.key').transition().attr('height', 0)
   })
 }

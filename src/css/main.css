@@ -116,11 +116,6 @@ textarea {
     display: inline-block;
    }
 
-   #key{
-    display: none;
-   }
-
-
    #tooltip{
     position: fixed;
     z-index: 10000;
