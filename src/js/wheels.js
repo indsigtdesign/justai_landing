@@ -531,10 +531,17 @@ export function wheel(data, init) {
 
   maxTheme = d3.max(theVals)
   maxTotal = sdata[2].responses
-  console.log(maxTotal)
+  console.log(sdata)
+  console.log(maxTotal+" "+maxTheme+" "+maxId)
 
   if (maxTotal > 0) {
-    barScale.domain([0, maxTotal])
+    if(maxTheme > maxId){
+      barScale.domain([0, maxTheme])
+    }
+    if(maxId > maxTheme){
+      barScale.domain([0, maxId])
+    }
+    // barScale.domain([0, maxTotal])
     rectIdentity
       .transition()
       .duration(4000)
