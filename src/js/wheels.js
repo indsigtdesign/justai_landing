@@ -530,8 +530,9 @@ export function wheel(data, init) {
     .on('mouseleave', mouseLeave)
 
   maxTheme = d3.max(theVals)
-
   maxTotal = sdata[2].responses
+  console.log(maxTotal)
+
   if (maxTotal > 0) {
     barScale.domain([0, maxTotal])
     rectIdentity
