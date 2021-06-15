@@ -405,6 +405,8 @@ export function wheel(data, init) {
       }
     })
     .attr('height', 0)
+    .on('mouseenter', mouseEnterID)
+    .on('mouseleave', mouseLeave)
   maxId = d3.max(idVals)
 
   const rectMaxTH = gthe
@@ -525,13 +527,11 @@ export function wheel(data, init) {
         return strokeNormal
       }
     })
-    .on('mouseenter', mouseEnter)
+    .on('mouseenter', mouseEnterTH)
     .on('mouseleave', mouseLeave)
 
   maxTheme = d3.max(theVals)
   maxTotal = sdata[2].responses
-  console.log(sdata)
-  console.log(maxTotal+" "+maxTheme+" "+maxId)
 
   if (maxTotal > 0) {
     if(maxTheme > maxId){
@@ -555,7 +555,36 @@ export function wheel(data, init) {
       })
   }
 
-  function mouseEnter(event, d) {
+
+  const qArray = [
+    'self-ethicist',
+    'others-ethicist',
+    'paid work',
+    'years in field',
+    'education',
+    'career path',
+    'domain',
+    'topics',
+    'outputs',
+    'audiences',
+    'collab type',
+    'collab field'
+  ]
+  const origQArray = [
+    'do you see yourself as an ethicist?',
+    'do your colleagues see you as an ethicist?',
+    'are you paid for your work on AI/data ethics?',
+    'how many years have you been in the field of AI ethics?',
+    'which fields are closest to your education or training?',
+    'what best describes where you are in your career?',
+    'is there a particular domain you look at?',
+    'how would you define the broad topic?',
+    'what outputs is this work producing?',
+    'who is the audience of your work?',
+    'do you collaborate with others in this work?',
+    'who else is involved in your work on this theme?'
+  ]
+  function mouseEnterID(event, d) {
     d3.select(this).attr('stroke-width', strokeHighlight * 2)
 
     let tooltip = document.getElementById('tooltip')
@@ -564,8 +593,94 @@ export function wheel(data, init) {
 
     tooltip.classList.add('active')
     //modify: if tooltip is for themes, add extra descriptor? or can it be the same in both cases?
-    document.getElementById('tooltip_theme').innerHTML = d.value
-    document.getElementById('tooltip_name').innerHTML = d.total
+    if(d.value==1){
+      document.getElementById('tooltip_value').innerHTML = 'This was your answer';
+    }else{
+      document.getElementById('tooltip_value').innerHTML = '';      
+    }
+    if(d.total==1){
+      document.getElementById('tooltip_total').innerHTML = d.total+' respondent chose this answer'
+    }
+    if(d.total>1){
+      document.getElementById('tooltip_total').innerHTML = d.total+' total respondents chose this answer'
+    }
+    if(d.total<1){
+      document.getElementById('tooltip_total').innerHTML = ''
+    }
+
+    console.log(d)
+    let qName;
+    for (let i = 0; i < qArray.length; i++){
+      if(d.parent==qArray[i]){
+        qName = origQArray[i];
+      }
+    }
+    document.getElementById('tooltip_q').innerHTML = 'Question: '+qName
+
+    if(d.value>0){
+      document.getElementById('tooltip_a').innerHTML = 'Your answer: '+d.name
+    }
+    if(d.value==0){
+      document.getElementById('tooltip_a').innerHTML = 'This answer: '+d.name
+    }
+
+  }
+
+
+  function mouseEnterTH(event, d) {
+    d3.select(this).attr('stroke-width', strokeHighlight * 2)
+
+    let tooltip = document.getElementById('tooltip')
+    tooltip.style.top = `${event.clientY - tooltip.clientHeight / 2}px`
+    tooltip.style.left = `${event.clientX + 35}px`
+
+    tooltip.classList.add('active')
+
+    if(d.value>0 && d.value < 12){
+      document.getElementById('tooltip_value').innerHTML = 'This is your answer for work theme '+d.value
+    }
+    if(d.value == 12){
+      document.getElementById('tooltip_value').innerHTML = 'This is your answer for work themes 1 and 2';
+    }
+    if(d.value == 13){
+      document.getElementById('tooltip_value').innerHTML = 'This is your answer for work themes 1 and 3';
+    }
+    if(d.value == 23){
+      document.getElementById('tooltip_value').innerHTML = 'This is your answer for work themes 2 and 3';
+    }
+    if(d.value == 123){
+      document.getElementById('tooltip_value').innerHTML = 'This is your answer for work themes 1, 2 and 3';
+    } 
+    else{
+      document.getElementById('tooltip_value').innerHTML = '';
+    }
+
+    if(d.total==1){
+      document.getElementById('tooltip_total').innerHTML = d.total+' respondent chose this answer'
+    }
+    if(d.total>1){
+      document.getElementById('tooltip_total').innerHTML = d.total+' total respondents chose this answer'
+    }
+    if(d.total<1){
+      document.getElementById('tooltip_total').innerHTML = ''
+    }
+
+    let qName;
+    for (let i = 0; i < qArray.length; i++){
+      if(d.parent==qArray[i]){
+        qName = origQArray[i];
+      }
+    }
+    document.getElementById('tooltip_q').innerHTML = 'Question: '+qName
+
+
+    if(d.value>0){
+      document.getElementById('tooltip_a').innerHTML = 'Your answer: '+d.name
+    }
+    if(d.value==0){
+      document.getElementById('tooltip_a').innerHTML = 'This answer: '+d.name
+    }
+
   }
   function mouseLeave(d) {
     d3.select(this).attr('stroke-width', function (d) {
