@@ -559,14 +559,12 @@ export function wheel(data, init) {
     d3.select(this).attr('stroke-width', strokeHighlight * 2)
 
     let tooltip = document.getElementById('tooltip')
-
-    // console.log(d)
-    console.log(event)
-    tooltip.style.top = `${d.y - tooltip.clientHeight / 2}px`
-    tooltip.style.left = `${d.x + 35}px`
+    tooltip.style.top = `${event.clientY - tooltip.clientHeight / 2}px`
+    tooltip.style.left = `${event.clientX + 35}px`
 
     tooltip.classList.add('active')
-    document.getElementById('tooltip_id').innerHTML = d.value
+    //modify: if tooltip is for themes, add extra descriptor? or can it be the same in both cases?
+    document.getElementById('tooltip_theme').innerHTML = d.value
     document.getElementById('tooltip_name').innerHTML = d.total
   }
   function mouseLeave(d) {
