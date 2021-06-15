@@ -1,4 +1,4 @@
-// calculateValues :: String -> String -> Object
+// calculateValues :: Object -> String -> Object
 const calculateValues = (initValues) => (q) => {
   if (q === null || q === '')
     return Object.keys(initValues).reduce(
@@ -11,7 +11,23 @@ const calculateValues = (initValues) => (q) => {
   }
 }
 
-// calculateValuesMultiple :: String -> (Array,Array,Array) -> Object
+// calculateValuesArray :: Object -> Array -> Object
+const calculateValuesArray = (initValues) => (q) => {
+  if ((q || []).length === 0)
+    return Object.keys(initValues).reduce(
+      (last_obj, key) => ({ ...last_obj, [key]: -1 }), // -1 on all values if skipped question
+      {}
+    )
+  else {
+    const latestChoice = q.reduce(
+      (last_obj, key) => ({ ...last_obj, [key]: 1 }),
+      {}
+    ) // 1 if picked
+    return { ...initValues, ...latestChoice } // build values with default
+  }
+}
+
+// calculateValuesMultiple :: Object -> (Array,Array,Array) -> Object
 const calculateValuesMultiple = (initValues) => (q, q2, q3) => {
   if (
     (q || []).length === 0 &&
@@ -54,7 +70,7 @@ const calculateValuesMultiple = (initValues) => (q, q2, q3) => {
   }
 }
 
-// calculateValuesMultipleText :: String -> (String,String,String) -> Object
+// calculateValuesMultipleText :: Object -> (String,String,String) -> Object
 const calculateValuesMultipleText = (initValues) => (q, q2, q3) => {
   if (
     (q === null || q === '') &&
@@ -356,7 +372,7 @@ function getEducation(latest, data) {
     '#other': 0,
   }
 
-  const values = calculateValues(initVal)(latest.q9)
+  const values = calculateValuesArray(initVal)(latest.q9) // q9 is Array
 
   const template = {
     q: 'education',
