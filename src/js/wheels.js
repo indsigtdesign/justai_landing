@@ -21,7 +21,7 @@ export function wheel(data, init) {
   const paddingX = width / 15
   const paddingY = height / 14
 
-  const centerEX = width / 2 - paddingX * 2
+  const centerEX = width / 2 - paddingX * 2.2
   const centerEH = height / figDepth
 
   const innerCircRad = width / 40
@@ -560,7 +560,8 @@ export function wheel(data, init) {
 
     let tooltip = document.getElementById('tooltip')
 
-    console.log(d)
+    // console.log(d)
+    console.log(event)
     tooltip.style.top = `${d.y - tooltip.clientHeight / 2}px`
     tooltip.style.left = `${d.x + 35}px`
 
@@ -588,7 +589,7 @@ export function wheel(data, init) {
     .scaleExtent([1, 8])
     .on('zoom', zoomed)
 
-  svg.call(zoom.scaleBy, 1.9)
+  svg.call(zoom.scaleBy, 2.1)
 
   // svg.on('click', reset);
 
