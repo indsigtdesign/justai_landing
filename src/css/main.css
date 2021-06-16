@@ -182,7 +182,7 @@ textarea {
     display: inline-block;
    }
 
-   #fingerprint-container{
+   #fingerprint{
     min-width: 500px;
     min-height: 500px;
     height: 100vh;
