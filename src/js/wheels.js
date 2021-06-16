@@ -3,7 +3,8 @@ const { width, height } = div.getBoundingClientRect()
 
 const leftMargin = 100
 const topMargin = leftMargin
-
+let tooltip = d3.select('#tooltip')
+    .style('opacity', 0);
 // wheel :: (Object, Boolean) -> undefined
 export function wheel(data, init) {
   d3.select('#wheel-container').selectAll('svg').remove()
@@ -583,31 +584,26 @@ export function wheel(data, init) {
     'do you collaborate with others in this work?',
     'who else is involved in your work on this theme?',
   ]
+
+
   function mouseEnterID(event, d) {
     d3.select(this).attr('stroke-width', strokeHighlight * 2)
+    tooltip.transition()
+     .duration(200)
+     .style('opacity', .9)
+     .style('left', (event.pageX) + 'px')
+     .style('top', (event.pageY - 28) + 'px');
 
-    let tooltip = document.getElementById('tooltip')
-    tooltip.style.top = `${event.clientY - tooltip.clientHeight / 2}px`
-    tooltip.style.left = `${event.clientX + 35}px`
-
-    tooltip.classList.add('active')
-    //modify: if tooltip is for themes, add extra descriptor? or can it be the same in both cases?
-    if (d.value == 1) {
-      document.getElementById('tooltip_value').innerHTML =
-        'This was your answer'
-    } else {
-      document.getElementById('tooltip_value').innerHTML = ''
-    }
+    let addText = []
     if (d.total == 1) {
-      document.getElementById('tooltip_total').innerHTML =
-        d.total + ' respondent chose this answer'
+      addText.push('<br/>'+d.total + ' respondent chose this answer')
     }
     if (d.total > 1) {
-      document.getElementById('tooltip_total').innerHTML =
-        d.total + ' total respondents chose this answer'
+      addText.push(d.total + ' total respondents chose this answer')
     }
     if (d.total < 1) {
-      document.getElementById('tooltip_total').innerHTML = ''
+      addText.push('No one has chosen this answer so far')
+      tooltip.html('No one has chosen this answer so far')
     }
 
     let qName
@@ -616,58 +612,35 @@ export function wheel(data, init) {
         qName = origQArray[i]
       }
     }
-    document.getElementById('tooltip_q').innerHTML = 'Question: ' + qName
-
+    addText.push('<br/>Question: ' + qName)
     if (d.value > 0) {
-      document.getElementById('tooltip_a').innerHTML = 'Your answer: ' + d.name
+      addText.push('<br/>Your answer: ' + d.name)
     }
     if (d.value == 0) {
-      document.getElementById('tooltip_a').innerHTML = 'This answer: ' + d.name
+      addText.push('<br/>This answer: ' + d.name)
     }
+    tooltip.html(addText)
   }
 
   function mouseEnterTH(event, d) {
     d3.select(this).attr('stroke-width', strokeHighlight * 2)
 
-    let tooltip = document.getElementById('tooltip')
-    tooltip.style.top = `${event.clientY - tooltip.clientHeight / 2}px`
-    tooltip.style.left = `${event.clientX + 35}px`
+    tooltip.transition()
+     .duration(200)
+     .style('opacity', .9)
+     .style('left', (event.pageX) + 'px')
+     .style('top', (event.pageY - 28) + 'px');
 
-    tooltip.classList.add('active')
-
-    if (d.value > 0 && d.value < 12) {
-      document.getElementById('tooltip_value').innerHTML =
-        'This is your answer for work theme ' + d.value
-    }
-    if (d.value == 12) {
-      document.getElementById('tooltip_value').innerHTML =
-        'This is your answer for work themes 1 and 2'
-    }
-    if (d.value == 13) {
-      document.getElementById('tooltip_value').innerHTML =
-        'This is your answer for work themes 1 and 3'
-    }
-    if (d.value == 23) {
-      document.getElementById('tooltip_value').innerHTML =
-        'This is your answer for work themes 2 and 3'
-    }
-    if (d.value == 123) {
-      document.getElementById('tooltip_value').innerHTML =
-        'This is your answer for work themes 1, 2 and 3'
-    } else {
-      document.getElementById('tooltip_value').innerHTML = ''
-    }
-
+    let addText = []
     if (d.total == 1) {
-      document.getElementById('tooltip_total').innerHTML =
-        d.total + ' respondent chose this answer'
+      addText.push('<br/>'+d.total + ' respondent chose this answer')
     }
     if (d.total > 1) {
-      document.getElementById('tooltip_total').innerHTML =
-        d.total + ' total respondents chose this answer'
+      addText.push(d.total + ' total respondents chose this answer')
     }
     if (d.total < 1) {
-      document.getElementById('tooltip_total').innerHTML = ''
+      addText.push('No one has chosen this answer so far')
+      tooltip.html('No one has chosen this answer so far')
     }
 
     let qName
@@ -676,15 +649,34 @@ export function wheel(data, init) {
         qName = origQArray[i]
       }
     }
-    document.getElementById('tooltip_q').innerHTML = 'Question: ' + qName
-
+    addText.push('<br/>Question: ' + qName)
     if (d.value > 0) {
-      document.getElementById('tooltip_a').innerHTML = 'Your answer: ' + d.name
+      addText.push('<br/>Your answer: ' + d.name)
     }
     if (d.value == 0) {
-      document.getElementById('tooltip_a').innerHTML = 'This answer: ' + d.name
+      addText.push('<br/>This answer: ' + d.name)
     }
+    if (d.value > 0 && d.value < 12) {
+       addText.push('This is your answer for work theme ' + d.value)
+    }
+    if (d.value == 12) {
+      addText.push('This is your answer for work themes 1 and 2')
+    }
+    if (d.value == 13) {
+      addText.push('This is your answer for work themes 1 and 3')
+    }
+    if (d.value == 23) {
+      addText.push('This is your answer for work themes 2 and 3')
+    }
+    if (d.value == 123) {
+      addText.push('This is your answer for work themes 1, 2 and 3')
+    } else {
+    }
+    tooltip.html(addText)
   }
+
+
+
   function mouseLeave(d) {
     d3.select(this).attr('stroke-width', function (d) {
       if (d.value > 0) {
@@ -693,7 +685,10 @@ export function wheel(data, init) {
         return strokeNormal
       }
     })
-    document.getElementById('tooltip').classList.remove('active')
+    tooltip.transition()
+      .duration(500)
+      .style('opacity', 0);
+    // document.getElementById('tooltip').classList.remove('active')
   }
 
   const zoom = d3
