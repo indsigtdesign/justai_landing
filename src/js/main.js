@@ -100,9 +100,10 @@ const triggerGeneratingJson = async (data, cnt) => {
   // await the promises
   // data :: Object
   let count = cnt
-  if (count) {
-    const countP = api.from('data').select('id', { count: 'exact' })
-    const { error: err1, count: countNew } = await countP
+  if (!count) {
+    const { error: err1, count: countNew } = await api
+      .from('data')
+      .select('id', { count: 'exact' })
     if (err1) {
       console.error('API-ERROR:\n', err1)
       return

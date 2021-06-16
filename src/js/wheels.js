@@ -534,10 +534,10 @@ export function wheel(data, init) {
   maxTotal = sdata[2].responses
 
   if (maxTotal > 0) {
-    if(maxTheme > maxId){
+    if (maxTheme > maxId) {
       barScale.domain([0, maxTheme])
     }
-    if(maxId > maxTheme){
+    if (maxId > maxTheme) {
       barScale.domain([0, maxId])
     }
     // barScale.domain([0, maxTotal])
@@ -555,7 +555,6 @@ export function wheel(data, init) {
       })
   }
 
-
   const qArray = [
     'self-ethicist',
     'others-ethicist',
@@ -568,7 +567,7 @@ export function wheel(data, init) {
     'outputs',
     'audiences',
     'collab type',
-    'collab field'
+    'collab field',
   ]
   const origQArray = [
     'do you see yourself as an ethicist?',
@@ -582,7 +581,7 @@ export function wheel(data, init) {
     'what outputs is this work producing?',
     'who is the audience of your work?',
     'do you collaborate with others in this work?',
-    'who else is involved in your work on this theme?'
+    'who else is involved in your work on this theme?',
   ]
   function mouseEnterID(event, d) {
     d3.select(this).attr('stroke-width', strokeHighlight * 2)
@@ -593,39 +592,39 @@ export function wheel(data, init) {
 
     tooltip.classList.add('active')
     //modify: if tooltip is for themes, add extra descriptor? or can it be the same in both cases?
-    if(d.value==1){
-      document.getElementById('tooltip_value').innerHTML = 'This was your answer';
-    }else{
-      document.getElementById('tooltip_value').innerHTML = '';      
+    if (d.value == 1) {
+      document.getElementById('tooltip_value').innerHTML =
+        'This was your answer'
+    } else {
+      document.getElementById('tooltip_value').innerHTML = ''
     }
-    if(d.total==1){
-      document.getElementById('tooltip_total').innerHTML = d.total+' respondent chose this answer'
+    if (d.total == 1) {
+      document.getElementById('tooltip_total').innerHTML =
+        d.total + ' respondent chose this answer'
     }
-    if(d.total>1){
-      document.getElementById('tooltip_total').innerHTML = d.total+' total respondents chose this answer'
+    if (d.total > 1) {
+      document.getElementById('tooltip_total').innerHTML =
+        d.total + ' total respondents chose this answer'
     }
-    if(d.total<1){
+    if (d.total < 1) {
       document.getElementById('tooltip_total').innerHTML = ''
     }
 
-    console.log(d)
-    let qName;
-    for (let i = 0; i < qArray.length; i++){
-      if(d.parent==qArray[i]){
-        qName = origQArray[i];
+    let qName
+    for (let i = 0; i < qArray.length; i++) {
+      if (d.parent == qArray[i]) {
+        qName = origQArray[i]
       }
     }
-    document.getElementById('tooltip_q').innerHTML = 'Question: '+qName
+    document.getElementById('tooltip_q').innerHTML = 'Question: ' + qName
 
-    if(d.value>0){
-      document.getElementById('tooltip_a').innerHTML = 'Your answer: '+d.name
+    if (d.value > 0) {
+      document.getElementById('tooltip_a').innerHTML = 'Your answer: ' + d.name
     }
-    if(d.value==0){
-      document.getElementById('tooltip_a').innerHTML = 'This answer: '+d.name
+    if (d.value == 0) {
+      document.getElementById('tooltip_a').innerHTML = 'This answer: ' + d.name
     }
-
   }
-
 
   function mouseEnterTH(event, d) {
     d3.select(this).attr('stroke-width', strokeHighlight * 2)
@@ -636,51 +635,55 @@ export function wheel(data, init) {
 
     tooltip.classList.add('active')
 
-    if(d.value>0 && d.value < 12){
-      document.getElementById('tooltip_value').innerHTML = 'This is your answer for work theme '+d.value
+    if (d.value > 0 && d.value < 12) {
+      document.getElementById('tooltip_value').innerHTML =
+        'This is your answer for work theme ' + d.value
     }
-    if(d.value == 12){
-      document.getElementById('tooltip_value').innerHTML = 'This is your answer for work themes 1 and 2';
+    if (d.value == 12) {
+      document.getElementById('tooltip_value').innerHTML =
+        'This is your answer for work themes 1 and 2'
     }
-    if(d.value == 13){
-      document.getElementById('tooltip_value').innerHTML = 'This is your answer for work themes 1 and 3';
+    if (d.value == 13) {
+      document.getElementById('tooltip_value').innerHTML =
+        'This is your answer for work themes 1 and 3'
     }
-    if(d.value == 23){
-      document.getElementById('tooltip_value').innerHTML = 'This is your answer for work themes 2 and 3';
+    if (d.value == 23) {
+      document.getElementById('tooltip_value').innerHTML =
+        'This is your answer for work themes 2 and 3'
     }
-    if(d.value == 123){
-      document.getElementById('tooltip_value').innerHTML = 'This is your answer for work themes 1, 2 and 3';
-    } 
-    else{
-      document.getElementById('tooltip_value').innerHTML = '';
+    if (d.value == 123) {
+      document.getElementById('tooltip_value').innerHTML =
+        'This is your answer for work themes 1, 2 and 3'
+    } else {
+      document.getElementById('tooltip_value').innerHTML = ''
     }
 
-    if(d.total==1){
-      document.getElementById('tooltip_total').innerHTML = d.total+' respondent chose this answer'
+    if (d.total == 1) {
+      document.getElementById('tooltip_total').innerHTML =
+        d.total + ' respondent chose this answer'
     }
-    if(d.total>1){
-      document.getElementById('tooltip_total').innerHTML = d.total+' total respondents chose this answer'
+    if (d.total > 1) {
+      document.getElementById('tooltip_total').innerHTML =
+        d.total + ' total respondents chose this answer'
     }
-    if(d.total<1){
+    if (d.total < 1) {
       document.getElementById('tooltip_total').innerHTML = ''
     }
 
-    let qName;
-    for (let i = 0; i < qArray.length; i++){
-      if(d.parent==qArray[i]){
-        qName = origQArray[i];
+    let qName
+    for (let i = 0; i < qArray.length; i++) {
+      if (d.parent == qArray[i]) {
+        qName = origQArray[i]
       }
     }
-    document.getElementById('tooltip_q').innerHTML = 'Question: '+qName
+    document.getElementById('tooltip_q').innerHTML = 'Question: ' + qName
 
-
-    if(d.value>0){
-      document.getElementById('tooltip_a').innerHTML = 'Your answer: '+d.name
+    if (d.value > 0) {
+      document.getElementById('tooltip_a').innerHTML = 'Your answer: ' + d.name
     }
-    if(d.value==0){
-      document.getElementById('tooltip_a').innerHTML = 'This answer: '+d.name
+    if (d.value == 0) {
+      document.getElementById('tooltip_a').innerHTML = 'This answer: ' + d.name
     }
-
   }
   function mouseLeave(d) {
     d3.select(this).attr('stroke-width', function (d) {
@@ -771,20 +774,16 @@ export function wheel(data, init) {
     })
     .attr('fill', 'none')
     .text(function (d, i) {
-      console.log(width)
       return 7 + i
     })
   const key = svg
     .append('image')
-    .attr('class','key')
-    .attr('x', width/15)
-    .attr('y', height-270)
-    .attr('width', width-width/15)
+    .attr('class', 'key')
+    .attr('x', width / 15)
+    .attr('y', height - 270)
+    .attr('width', width - width / 15)
     .attr('height', 0)
     .attr('xlink:href', 'img/wheel-key-spread.svg')
-
-
-
 
   d3.select('#self-highlight-off').on('click', function () {
     d3.selectAll('.rectID, .rectTHE')
