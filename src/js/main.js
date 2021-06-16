@@ -190,3 +190,7 @@ const triggerGeneratingJson = async (data, cnt) => {
 }
 
 init().catch(console.error)
+
+if (window.innerWidth < 768) {
+  $('#sizeModal').modal('toggle');
+}

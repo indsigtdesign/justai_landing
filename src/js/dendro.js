@@ -4,7 +4,7 @@ const x = rect.left
 const y = rect.top
 const width = rect.width
 const height = rect.height
-const radius = width / 1.5
+const radius = width / 1.665
 
 const stratify = d3.cluster().size([2 * Math.PI, radius - 100])
 

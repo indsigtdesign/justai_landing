@@ -29,102 +29,146 @@
   <div class="container-lg">
     <!-- Intro text -->
     <div class="row">
-      <div class="col-12 mt-5">
+      <div class="col-lg-12 col-12 mt-5">
         <h1>JUST-AI headline</h1>
       </div>
-      <div class="col-12 mt-2">
+      <div class="col-lg-12 col-12 mt-2">
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pulvinar auctor elementum, diam eu amet, pulvinar. Integer ac diam quisque leo ac. Nulla viverra velit viverra arcu ut aliquam arcu, enim. Laoreet duis condimentum viverra mauris. Ullamcorper aliquet ac vestibulum platea gravida iaculis amet tortor. Id mauris, ut mattis ornare sodales.
+          Thank you for completing the JUST AI survey.  Using the information you have shared, we have created visual representations of your research interests and perspective in the field of AI and data ethics.
         </p>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pulvinar auctor elementum, diam eu amet, pulvinar. Integer ac diam quisque leo ac. Nulla viverra velit viverra arcu ut aliquam arcu, enim. Laoreet duis condimentum viverra mauris. Ullamcorper aliquet ac vestibulum platea gravida iaculis amet tortor. Id mauris, ut mattis ornare sodales.
+          We hope these perspectives will show different ways to connect, and challenge representations that consolidate power and influence. Striving for alternative means of engaging with networks, we have designed these prototypes to model transformed potentials for networking. You can find and share your own unique position and find other researchers with similar or different perspectives. 
         </p>
       </div>
     </div>
 
     <!-- Fingerprint -->
     <div class="row justify-content-between">
-      <div class="col-12 mt-5">
+      <div class="col-lg-12 col-12 mt-5">
         <h1>Your survey fingerprint</h1>
-          <button class="dendro-labels-on">LABELS ON</button>
-          <button class="dendro-labels-off">--OFF</button>
       </div>
-      <div class="col-5 mt-2">
+      <div class="col-lg-6 col-12 mt-2 overflow-hidden">
         <div class="d-flex justify-content-center">
           <div class="fingerprint-container" id="fingerprint">
           </div>
         </div>
+        <div class="d-flex flex-row justify-content-evenly mt-5">
+            <button class="just-ai-btn me-2 dendro-labels-on">LABELS ON</button>
+            <button class="just-ai-btn dendro-labels-off">LABELS OFF</button>
+          </div>
       </div>
 
-      <div class="col-6 mt-2">
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In proin praesent cras ipsum. Adipiscing tincidunt morbi mauris imperdiet augue nisl, mauris elementum eu. Magna nibh diam ac ante. Amet tortor sem nisl a pellentesque sed risus. Duis quis.
+      <div class="col-lg-5 col-12 mt-2 d-flex align-items-end">
+        <div class="row">
+          <p class="col-lg-12 col-12">
+          This is a visualization of your own perspective. Inspired by rhizome structures, each branch offers a unique insight into your research, expertise and practices.  
         </p>
-        <p class="mt-4">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pulvinar auctor elementum, diam eu amet, pulvinar. Integer ac diam quisque leo ac. Nulla viverra velit viverra arcu ut aliquam arcu, enim. Laoreet duis condimentum viverra mauris. Ullamcorper aliquet ac vestibulum platea gravida iaculis amet tortor. Id mauris, ut mattis ornare sodales tempor.
-        </p>
-      </div>
-
-      <div class="col-12">
-        <p class="mt-4">
-          Eros, luctus volutpat viverra augue consectetur malesuada pellentesque habitasse. Blandit bibendum non quisque elit pellentesque nunc. Velit sed orci posuere odio. Pellentesque blandit urna, diam semper eu aliquam est. Mattis nulla facilisi sit euismod purus. Ullamcorper iaculis duis proin dignissim et ultrices eget massa turpis. Blandit aliquam porta ultricies morbi odio justo, pretium.
-        </p>
+        <p class="col-lg-12 col-12 mt-4">
+          The colour and variations adds to the complexity of these answers to situate your own unique contribution to the field.  You can share your personal fingerprint with others via social media.
+        </p> 
+        </div>
       </div>
     </div>
 
     <!-- wheel -->
     <div class="row justify-content-between">
-      <div class="col-12 mt-5">
+      <div class="col-lg-12 col-12 mt-5">
         <h1>Part of a whole</h1>
       </div>
     
 
-      <div class="col-12 mt-2">
+      <div class="col-lg-12 col-12 mt-2">
           <p>
-            Tincidunt scelerisque adipiscing fermentum congue nisi, posuere auctor pharetra tincidunt. Nec vulputate interdum ultricies adipiscing tempor vitae. Sem feugiat senectus a scelerisque magna sollicitudin diam auctor. Vulputate enim sed fermentum amet. Diam vitae nisi neque erat sit. Sem. <button id="self-highlight-off">Hide</button> or <button id="self-highlight-on">Show</button>  yourself in the whole.
+            Here is a different visualization of your perspective among other responses who have completed the survey. Rather than viewing these visualizations as static networks showing links between nodes, let’s interpret your response as part of a social process that defines the research we conduct in the field of data and AI ethics. By sharing your perspective with others, your position in this network will change in relation to other perspectives.
           </p>
-          <button id="wheels-labels-on">LABELS ON  
-          </button>
-          <button id="wheels-labels-off">--OFF
-          </button>
+          <div class="d-flex flex-row justify-content-evenly mt-5">
+            <button class="just-ai-btn me-2" id="self-highlight-off">Hide yourself in the whole.</button>
+            <button class="just-ai-btn" id="self-highlight-on">Show yourself in the whole.</button> 
+          </div>
       </div>
 
-      <div class="col-12 mt-2">
+      <div class="col-lg-12 col-12 mt-2 overflow-hidden">
         <div class="d-flex justify-content-center">
           <div id="wheel-container">
           </div>
-
-          <div id="tooltip">
-          </div>
-
+          <div id="tooltip"></div>
         </div>
+        
+        <div class="d-flex flex-row justify-content-evenly">
+          <button class="just-ai-btn me-2" id="wheels-labels-on">LABELS ON</button>
+          <button class="just-ai-btn" id="wheels-labels-off">LABELS OFF</button>
+        </div>
+
       </div>
 
       <div class="accordion accordion-flush mt-5" id="howToRead">
         <div class="accordion-item">
           <h2 class="accordion-header" id="flush-headingOne">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-              How to read
+            <button class="accordion-button collapsed ps-0" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+              <h1>How to read</h1>
             </button>
           </h2>
           <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#howToRead">
             <div class="accordion-body">
-              <p>
-              Placeholder content for this accordion, which is intended to demonstrate the accordion
-              <p>
+              <div class="row">
+                <div class="col-lg-12 col-12">
+                  <p>
+                    How did people respond to the survey thus far? Do many respond with the same answer or are they spread out widely? For each question, there is a wheel of possible answers. Each choice is recorded and added to the bars.
+                  <p>
+                </div>
+                
+                <div class="col-lg-12 col-12 mt-5">
+                  <p class="col-lg-6">
+                    The placement of the wheels indicate what type of question it is. 
+                  <p>
+                </div>
+
+                <div class="col-lg-7 mt-1">
+                  <div class="col-lg-12 col-12 mb-5">
+                    <img src="img/wheel01.svg" class="img-fluid" alt="...">
+                  </div>
+                  <div class="col-lg-8 mt-5">
+                    <p>The distance between the wheels indicate questions we think relate to each other</p>
+                    <img src="img/wheel03.svg" class="img-fluid" alt="...">
+                  </div>
+                </div>
+                
+                <div class="col-lg-5 mt-1">
+                  <img src="img/wheel02.svg" class="img-fluid" alt="...">
+                </div>
+
+                <div class="row d-flex mt-5">
+                  
+                  <div class="col-lg-5 mt-5 align-self-end">
+                    <p>
+                      Each WHEEL represent one question and its possible answers
+                    <p>
+                      <img src="img/wheel06.svg" class="img-fluid" alt="...">
+                  </div>
+
+                  <div class="col-lg-6 ms-auto">
+                    <p>
+                      Each STACK on the wheels represent a possible answer
+                    <p>
+                    <img src="img/wheel04.svg" class="img-fluid" alt="...">
+                  </div>
+                  
+                </div>
+              </div>
+              
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Stay in touch -->
+    <!-- Stay in touch
     <div class="row justify-content-between">
-      <div class="col-12 mt-5">
+      <div class="col-lg-12 col-12 mt-5">
         <h1>Stay in touch</h1>
       </div>
 
-      <div class="col-6 mt-2">
+      <div class="col-lg-6 mt-2">
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. In proin praesent cras ipsum. Adipiscing tincidunt morbi mauris imperdiet augue nisl, mauris elementum eu. Magna nibh diam ac ante. Amet tortor sem nisl a pellentesque sed risus. Duis quis.
         </p>
@@ -133,28 +177,74 @@
         </p>
       </div>
 
-      <div class="col-5 mt-2">
-          <button type="button" class="dendro-labels-on">LABELS ON</button>
-          <button type="button" class="dendro-labels-off">--OFF</button>
+      <div class="col-lg-5 mt-2">
+          <button class="just-ai-btn" type="button" class="dendro-labels-on">LABELS ON</button>
+          <button class="just-ai-btn" type="button" class="dendro-labels-off">LABELS OFF</button>
         <div class="d-flex justify-content-center">
           <div class="fingerprint-container">
           </div>
         </div>
       </div>
 
-      <div class="col-12">
+      <div class="col-lg-12 col-12">
         <p class="mt-4">
           Eros, luctus volutpat viverra augue consectetur malesuada pellentesque habitasse. Blandit bibendum non quisque elit pellentesque nunc. Velit sed orci posuere odio. Pellentesque blandit urna, diam semper eu aliquam est. Mattis nulla facilisi sit euismod purus. Ullamcorper iaculis duis proin dignissim et ultrices eget massa turpis. Blandit aliquam porta ultricies morbi odio justo, pretium.
         </p>
       </div>
     </div>
+    -->
+    <div class="row mt-5 mb-5">
+        
+        <div class="col-lg-6 col-lg-5">
+          <div class="col-lg-12 col-12 mt-5">
+            <h1>Brought to you by</h1>
+          </div>
+
+          <div class="col-lg-12 col-12">
+            <p class="mt-4">
+              This visualisation was designed and developed by <a href="https://annelieberner.com">Annelie Berner</a> and <a href="https://indsigt.design">indsigt.design</a>, in collaboration with <a href="https://www.adalovelaceinstitute.org/just-ai/">JUST AI</a> : Alison Powell, Louise Hickman, Imre Bard. Funded and supported by <a href="https://ahrc.ukri.org">AHRC</a> and the <a href="https://www.adalovelaceinstitute.org">Ada Lovelace Institute</a>.  
+            </p>
+          </div>
+        </div>
+
+        <div class="col-lg-5 ms-auto">
+            <div class="col-lg-12 col-12 mt-5">
+              <h1 style="-webkit-hyphens: auto; -ms-hyphens: auto; hyphens: auto;">Acknowledgment</h1>
+            </div>
+
+            <div class="col-lg-12 col-12">
+              <p class="mt-4">
+                With gratitude to our many fellow travellers on these paths: Jenny Brennan, Paula Crutchlow, Crystal Lee.  
+              </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="sizeModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">Small screen size</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            To get the best experiance out of the visualization we recomend viewing the website on a larger screen.
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Understood</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
 
   </div>
-  <script src="https://d3js.org/d3.v6.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+  <script src="js/d3.v6.min.js"></script>
   <script src="js/viz-init.js" type="module"></script>
   <script src="js/vendor/modernizr-3.11.2.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
   <script src="js/plugins.js"></script>
   <script src="js/main.js" async type="module"></script>
 </body>
