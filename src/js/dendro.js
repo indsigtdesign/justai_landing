@@ -198,7 +198,7 @@ export function dendro(data, init) {
     svg
       .append('g')
       // .attr("font-family", "sans-serif")
-      .attr('font-size', 8)
+      .attr('font-size', 10)
       .attr('stroke-linejoin', 'round')
       .attr('stroke-width', 3)
       .selectAll('text')

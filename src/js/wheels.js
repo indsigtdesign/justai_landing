@@ -587,7 +587,7 @@ export function wheel(data, init) {
 
 
   function mouseEnterID(event, d) {
-    d3.select(this).attr('stroke-width', strokeHighlight * 2)
+    d3.select(this).attr('stroke-width', strokeHighlight * 4)
     tooltip.transition()
      .duration(200)
      .style('opacity', .9)
@@ -599,11 +599,10 @@ export function wheel(data, init) {
       addText.push('<br/>'+d.total + ' respondent chose this answer')
     }
     if (d.total > 1) {
-      addText.push(d.total + ' total respondents chose this answer')
+      addText.push('<br/>'+d.total + ' total respondents chose this answer')
     }
     if (d.total < 1) {
       addText.push('No one has chosen this answer so far')
-      tooltip.html('No one has chosen this answer so far')
     }
 
     let qName
@@ -614,16 +613,16 @@ export function wheel(data, init) {
     }
     addText.push('<br/>Question: ' + qName)
     if (d.value > 0) {
-      addText.push('<br/>Your answer: ' + d.name)
+      addText.push('<br/>This was your answer: ' + d.name)
     }
     if (d.value == 0) {
       addText.push('<br/>This answer: ' + d.name)
     }
-    tooltip.html(addText)
+    tooltip.html(addText.join(''))
   }
 
   function mouseEnterTH(event, d) {
-    d3.select(this).attr('stroke-width', strokeHighlight * 2)
+    d3.select(this).attr('stroke-width', strokeHighlight * 4)
 
     tooltip.transition()
      .duration(200)
@@ -636,11 +635,10 @@ export function wheel(data, init) {
       addText.push('<br/>'+d.total + ' respondent chose this answer')
     }
     if (d.total > 1) {
-      addText.push(d.total + ' total respondents chose this answer')
+      addText.push('<br/>'+d.total + ' total respondents chose this answer')
     }
     if (d.total < 1) {
-      addText.push('No one has chosen this answer so far')
-      tooltip.html('No one has chosen this answer so far')
+      addText.push('<br/>'+'No one has chosen this answer so far')
     }
 
     let qName
@@ -651,28 +649,28 @@ export function wheel(data, init) {
     }
     addText.push('<br/>Question: ' + qName)
     if (d.value > 0) {
-      addText.push('<br/>Your answer: ' + d.name)
+      addText.push('<br/>Your answer was: ' + d.name)
     }
     if (d.value == 0) {
       addText.push('<br/>This answer: ' + d.name)
     }
     if (d.value > 0 && d.value < 12) {
-       addText.push('This is your answer for work theme ' + d.value)
+       addText.push('<br/>This was your answer for work theme ' + d.value)
     }
     if (d.value == 12) {
-      addText.push('This is your answer for work themes 1 and 2')
+      addText.push('<br/>This was your answer for work themes 1 and 2')
     }
     if (d.value == 13) {
-      addText.push('This is your answer for work themes 1 and 3')
+      addText.push('<br/>This was your answer for work themes 1 and 3')
     }
     if (d.value == 23) {
-      addText.push('This is your answer for work themes 2 and 3')
+      addText.push('<br/>This was your answer for work themes 2 and 3')
     }
     if (d.value == 123) {
-      addText.push('This is your answer for work themes 1, 2 and 3')
+      addText.push('<br/>This was your answer for work themes 1, 2 and 3')
     } else {
     }
-    tooltip.html(addText)
+    tooltip.html(addText.join(''))
   }
 
 
@@ -688,7 +686,6 @@ export function wheel(data, init) {
     tooltip.transition()
       .duration(500)
       .style('opacity', 0);
-    // document.getElementById('tooltip').classList.remove('active')
   }
 
   const zoom = d3

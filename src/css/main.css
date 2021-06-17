@@ -129,13 +129,19 @@ textarea {
   }
 
   #tooltip {
+    font-size: 12px;
+    color: #FFCC9A;
+    font-family: 'IBM Plex Mono', monospace;
     position: absolute;
-    text-align: center;
-    /*width: 60px;*/  
-    /*height: 28px;*/
-    padding: 2px;
-    background: darkgrey;
-    border: 0px;
+    opacity: 0;
+    padding-top: 0px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+
+    border: 2px solid #9A99FF;
+    background-color: #363636;
+
     border-radius: 8px;
     pointer-events: none;
   }
