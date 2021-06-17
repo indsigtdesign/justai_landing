@@ -6,7 +6,6 @@ const urlparams = new URLSearchParams(document.location.search.substring(1))
 
 const getEmail = () => {
   const emailURI = urlparams.get('email')
-  console.log(emailURI)
   if (emailURI && emailURI !== 'undefined' && emailURI !== 'null')
     return decodeURIComponent(emailURI)
   else return false
@@ -14,7 +13,6 @@ const getEmail = () => {
 
 const getID = () => {
   const idURI = urlparams.get('id')
-  console.log(idURI)
   if (idURI && idURI !== 'undefined' && idURI !== 'null')
     return decodeURIComponent(idURI)
   else return false

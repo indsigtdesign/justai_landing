@@ -35,7 +35,6 @@ const getEmail = () => {
 
 const getID = () => {
   const idURI = urlparams.get('id')
-  console.log(idURI)
   if (idURI && idURI !== 'undefined' && idURI !== 'null')
     return decodeURIComponent(idURI)
   else return false
@@ -43,8 +42,6 @@ const getID = () => {
 
 const email = getEmail()
 const id = getID()
-console.log('email ', email)
-console.log('id ', id)
 
 if (!(email || id)) {
   INITGRAPH = false
@@ -57,22 +54,36 @@ const init = async () => {
     .select('id', { count: 'exact' })
 
   // subscribe on latest survey answers
-  const subscription = api
-    .from('data')
-    .on('INSERT', (payload) => {
-      triggerGeneratingJson(payload.new)
-        .then((data) => {
-          dendro(data, INITGRAPH)
-          return data
-        })
-        .then((data) => {
-          wheel(data, INITGRAPH)
-          if (!INITGRAPH) INITGRAPH = false
-          return data
-        })
-        .catch(console.error) // with latest data object
-    })
-    .subscribe()
+
+  const subHandler = (payload) => {
+    const docErrs = document.getElementsByClassName('error-msg')
+    for (const doc of docErrs) {
+      doc.hidden = true
+    }
+    triggerGeneratingJson(payload.new)
+      .then((data) => {
+        dendro(data, INITGRAPH)
+        return data
+      })
+      .then((data) => {
+        wheel(data, INITGRAPH)
+        if (!INITGRAPH) INITGRAPH = false
+        return data
+      })
+      .catch(console.error) // with latest data object
+  }
+  const subscription =
+    email || id
+      ? email
+        ? api
+            .from(`data:email=eq.${email}`)
+            .on('INSERT', subHandler)
+            .subscribe()
+        : api
+            .from(`data:response_id=eq.${id}`)
+            .on('INSERT', subHandler)
+            .subscribe()
+      : api.from('data').on('INSERT', subHandler).subscribe()
 
   // get pre-generated json
   // if we have email or id return nothing, so we force download from API
