@@ -405,3 +405,18 @@ textarea {
   }
 }
 
+.relative {
+ position: relative;
+}
+
+.error-msg{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -50%;
+  height: 100%;
+  width: 100%;
+}
+.error-msg p {
+  color: gray;
+}

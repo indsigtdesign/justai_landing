@@ -21,6 +21,31 @@ const SUPABASE_PUBLIC_KEY =
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYyMjYxODg4NiwiZXhwIjoxOTM4MTk0ODg2fQ.CJWpNY28cMo_px6vgGL7ZELf6-a_QX61WE19Ia3ac_I'
 
 const api = createClient(SUPABASE_URL, SUPABASE_PUBLIC_KEY)
+let INITGRAPH = true
+
+// check for email / id
+const urlparams = new URLSearchParams(document.location.search.substring(1))
+
+const getEmail = () => {
+  const emailURI = urlparams.get('email')
+  if (emailURI && emailURI !== 'undefined' && emailURI !== 'null')
+    return decodeURIComponent(emailURI)
+  else return false
+}
+
+const getID = () => {
+  const idURI = urlparams.get('id')
+  if (idURI && idURI !== 'undefined' && idURI !== 'null')
+    return decodeURIComponent(idURI)
+  else return false
+}
+
+const email = getEmail()
+const id = getID()
+
+if (!(email || id)) {
+  INITGRAPH = false
+}
 
 const init = async () => {
   // get latest count
@@ -29,49 +54,86 @@ const init = async () => {
     .select('id', { count: 'exact' })
 
   // subscribe on latest survey answers
-  const subscription = api
-    .from('data')
-    .on('INSERT', (payload) => {
-      triggerGeneratingJson(payload.new)
-        .then((data) => {
-          dendro(data, false)
-          return data
-        })
-        .then((data) => {
-          wheel(data, false)
-          return data
-        })
-        .catch(console.error) // with latest data object
-    })
-    .subscribe()
+
+  const subHandler = (payload) => {
+    const docErrs = document.getElementsByClassName('error-msg')
+    for (const doc of docErrs) {
+      doc.hidden = true
+    }
+    triggerGeneratingJson(payload.new)
+      .then((data) => {
+        dendro(data, INITGRAPH)
+        return data
+      })
+      .then((data) => {
+        wheel(data, INITGRAPH)
+        if (!INITGRAPH) INITGRAPH = false
+        return data
+      })
+      .catch(console.error) // with latest data object
+  }
+  const subscription =
+    email || id
+      ? email
+        ? api
+            .from(`data:email=eq.${email}`)
+            .on('INSERT', subHandler)
+            .subscribe()
+        : api
+            .from(`data:response_id=eq.${id}`)
+            .on('INSERT', subHandler)
+            .subscribe()
+      : api.from('data').on('INSERT', subHandler).subscribe()
 
   // get pre-generated json
-  const oldData = await fetch('./data/data.json')
-    .then((it) => it.json())
-    .catch((it) => 'ignore')
+  // if we have email or id return nothing, so we force download from API
+  const oldData =
+    email || id
+      ? false
+      : await fetch('./data/data.json')
+          .then((it) => it.json())
+          .catch((it) => 'ignore')
 
   if (!oldData || oldData.children[2].responses !== count) {
-    const dataP = api
-      .from('data')
-      .select()
-      .order('created_time', { ascending: false })
-      .limit(1)
-      .single()
+    const dataP =
+      email || id // check if we need to narrow down to email/id
+        ? email
+          ? api.from('data').select().eq('email', email).limit(1).single()
+          : api.from('data').select().eq('response_id', id).limit(1).single()
+        : api
+            .from('data')
+            .select()
+            .order('created_time', { ascending: false })
+            .limit(1)
+            .single() // pull the most receant
 
     const { data: data, error: err } = await dataP
     if (err) {
+      if (
+        err.message === 'JSON object requested, multiple (or no) rows returned'
+      ) {
+        // TODO show pretty that we did not find user yet, but viz will appear when we receive response
+        // it could be alse that we cannot find email nor id
+        const docErrs = document.getElementsByClassName('error-msg')
+        for (const doc of docErrs) {
+          doc.innerHTML = `<div><p>We’re taking all of your responses into account :)</p>
+                                <p>Hang on a minute until we show you the result.</p></div>`
+        }
+      }
       console.error(err)
       return
     }
     triggerGeneratingJson(data)
       .then((data) => {
-        dendro(data, false)
+        dendro(data, INITGRAPH)
         return data
       })
       .then((data) => {
-        wheel(data, false)
+        wheel(data, INITGRAPH)
+        INITGRAPH = false
         return data
       })
+
       .catch(console.error) // initial trigger
   }
 
@@ -192,5 +254,5 @@ const triggerGeneratingJson = async (data, cnt) => {
 init().catch(console.error)
 
 if (window.innerWidth < 768) {
-  $('#sizeModal').modal('toggle');
+  $('#sizeModal').modal('toggle')
 }
