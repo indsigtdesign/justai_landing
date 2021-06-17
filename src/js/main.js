@@ -116,8 +116,11 @@ const init = async () => {
         // it could be alse that we cannot find email nor id
         const docErrs = document.getElementsByClassName('error-msg')
         for (const doc of docErrs) {
-          doc.innerHTML = `<div><p>We’re taking all of your responses into account :)</p>
-                                <p>Hang on a minute until we show you the result.</p></div>`
+          doc.innerHTML = `<div class="row">
+                            <p class="col-12" >We’re taking all of your responses into account :)</p>
+                            <i class="col-12 spin bi bi-arrow-repeat"></i>
+                            <p class="col-12" >Hang on a minute until we show you the result.</p>
+                           </div>`
         }
       }
       console.error(err)

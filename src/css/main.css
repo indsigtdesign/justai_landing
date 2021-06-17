@@ -215,6 +215,67 @@ textarea {
   background-color: black;
  }
 
+ .relative {
+ position: relative;
+}
+
+.error-msg{
+  position: absolute;
+  left: 50%;
+  top: 25%;
+  margin-left: -50%;
+  height: 100%;
+  width: 100%;
+}
+
+.error-msg .row{
+  background-color: black;
+  border: 2px #FFCC9A solid;
+  padding: 20px 0px;
+}
+.error-msg p {
+  color: gray;
+  text-align: center;
+  font-size: 24px;
+  line-height: 31px;
+  color: #FFCC9A;
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+.spin{
+  text-align: center;
+  font-size: 100px;
+  color: #FFCC9A;
+}
+
+.spin:before{
+  animation-name: spin;
+  animation-duration: 4000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@-ms-keyframes spin {
+    from { -ms-transform: rotate(0deg); }
+    to { -ms-transform: rotate(360deg); }
+}
+@-moz-keyframes spin {
+    from { -moz-transform: rotate(0deg); }
+    to { -moz-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+    from { -webkit-transform: rotate(0deg); }
+    to { -webkit-transform: rotate(360deg); }
+}
+@keyframes spin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
+    }
+}
+
  @media (max-width: 992px) {
    .fingerprint-container{
     width: 500px;
@@ -403,20 +464,4 @@ textarea {
   h3 {
     page-break-after: avoid;
   }
-}
-
-.relative {
- position: relative;
-}
-
-.error-msg{
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  margin-left: -50%;
-  height: 100%;
-  width: 100%;
-}
-.error-msg p {
-  color: gray;
 }
